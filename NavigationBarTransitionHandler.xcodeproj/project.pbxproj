@@ -83,9 +83,9 @@
 		C42C1D7E2046DF28004B33D2 /* NavigationBarTransitionHandler */ = {
 			isa = PBXGroup;
 			children = (
-				C42C1D812046DFA3004B33D2 /* Utilities.swift */,
-				C42C1D872048F49A004B33D2 /* NavigationBarBackgroundView.swift */,
 				C42C1D7F2046DF4B004B33D2 /* NavigationBarBackgroundHelper.swift */,
+				C42C1D872048F49A004B33D2 /* NavigationBarBackgroundView.swift */,
+				C42C1D812046DFA3004B33D2 /* Utilities.swift */,
 			);
 			path = NavigationBarTransitionHandler;
 			sourceTree = "<group>";

@@ -44,7 +44,6 @@ extension UIViewController {
     
     func restoreBackgroundAttr(forNavigationBar bar: UINavigationBar) {
         guard let vcs = navigationController?.viewControllers, vcs.count >= 2,
-              let bar = navigationController?.navigationBar,
               let attr = objc_getAssociatedObject(vcs[vcs.count - 2], &BarBackgroundStashedInfoKey) as? NavigationBarBackgroundAttr else {
             return
         }
@@ -57,6 +56,10 @@ extension UIViewController {
         bar.shadowImage = attr.shadowImage
         bar.isTranslucent = attr.isTranslucent
         bar.barTintColor = attr.barTintColor
+        
+        if let notifier = self as? NavigationBarBackgroundHelperDelegate {
+            notifier.navigationBarBackgroundAttrDidRestore?()
+        }
     }
     
     func stashForegroundAttr(forNavigationBar bar: UINavigationBar) {
@@ -65,14 +68,35 @@ extension UIViewController {
     }
     
     func restoreForegroundAttr(forNavigationBar bar: UINavigationBar) {
-        guard let bar = navigationController?.navigationBar,
-            let attr = objc_getAssociatedObject(self, &BarForegroundStashedInfoKey) as? NavigationBarForegroundAttr else {
+        guard let attr = objc_getAssociatedObject(self, &BarForegroundStashedInfoKey) as? NavigationBarForegroundAttr else {
                 return
         }
         
         bar.tintColor = attr.tintColor
         bar.titleTextAttributes = attr.titleAttributes
         bar.barStyle = attr.barStyle
+        
+        if let notifier = self as? NavigationBarBackgroundHelperDelegate {
+            notifier.navigationBarForegroundAttrDidRestore?()
+        }
+        
+        ///It turns out that when the transition is ongoing, the barStyle does not change the title label correctly.
+        ///So we have to change the title color manually when the titleAttributes are not set.
+        guard attr.titleAttributes == nil, let barForegroundContentClass = NSClassFromString("_UINavigationBarContentView") else {
+            return
+        }
+        
+        for subView in bar.subviews {
+            if subView.isKind(of: barForegroundContentClass) {
+                for contentView in subView.subviews {
+                    if let label = contentView as? UILabel {
+                        label.textColor = attr.barStyle == .default ? UIColor.black : UIColor.white
+                        break
+                    }
+                }
+                break
+            }
+        }
     }
 }
 
@@ -104,20 +128,22 @@ extension UIViewController {
     
     @available(iOS 11.0, *)
     @objc func jw_viewSafeAreaInsetsDidChange() {
-        jw_viewSafeAreaInsetsDidChange()
         barBackgroundHelper.setNeedsLayout()
+        jw_viewSafeAreaInsetsDidChange()
     }
     
     @objc func jw_viewWillAppear(_ animated: Bool) {
         if animated {
-            if transitionCoordinator?.isCancelled ?? false {
-                UIView.animate(withDuration: CATransaction.animationDuration(), animations: {
-                    self.synchronizeForegroundAttr()
-                })
+            if transitionCoordinator?.isInteractive ?? false {
+                if transitionCoordinator?.isCancelled ?? false {
+                    synchronizeForegroundAttr()
+                } else {
+                    transitionCoordinator?.animateAlongsideTransition(in: transitionCoordinator?.containerView.window, animation: { (ctx) in
+                        self.synchronizeForegroundAttr()
+                    })
+                }
             } else {
-                transitionCoordinator?.animateAlongsideTransition(in: transitionCoordinator?.containerView.window, animation: { (ctx) in
-                    self.synchronizeForegroundAttr()
-                }, completion: nil)
+                synchronizeForegroundAttr()
             }
         } else {
             synchronizeForegroundAttr()

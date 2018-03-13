@@ -14,6 +14,15 @@ class AccountViewController: UIViewController {
     
     let cellReuseIdentifiers = ["order", "member", "callCenter"]
     
+    var barAlpha: CGFloat? {
+        didSet {
+            guard let alpha = barAlpha else {
+                return
+            }
+            updateBarAlpha(alpha)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let itemWidth = (view.frame.size.width - 20 * 4) / 3.0
@@ -29,9 +38,20 @@ class AccountViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        scrollViewDidScroll(collectionView)
+    func updateBarAlpha(_ val: CGFloat) {
+        navigationController?.navigationBar.barStyle = val < 0.5 ? .default : .black
+        navigationController?.navigationBar.tintColor = val < 0.2 ? UIColor.darkGray : UIColor.white
+        barBackgroundHelper.view?.alpha = val
+    }
+    
+}
+
+extension AccountViewController : NavigationBarBackgroundHelperDelegate {
+    
+    func navigationBarForegroundAttrDidRestore() {
+        if let alpha = barAlpha {
+            updateBarAlpha(alpha)
+        }
     }
     
 }
@@ -41,10 +61,7 @@ extension AccountViewController : UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let topEdge = view.safeAreaInsets.top
-        let alpha: CGFloat = offsetY >= (CollectionHeaderHeight - topEdge) ? 1.0 : (offsetY < -topEdge ? 0 : (offsetY + topEdge) / CollectionHeaderHeight)
-        self.navigationController?.navigationBar.barStyle = alpha < 0.5 ? .default : .black
-        self.navigationController?.navigationBar.tintColor = alpha < 0.2 ? UIColor.darkGray : UIColor.white
-        self.barBackgroundHelper.view?.alpha = alpha
+        barAlpha = offsetY >= (CollectionHeaderHeight - topEdge) ? 1.0 : (offsetY < -topEdge ? 0 : (offsetY + topEdge) / CollectionHeaderHeight)
     }
     
 }

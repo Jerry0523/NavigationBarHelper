@@ -23,6 +23,20 @@
 
 import UIKit
 
+@objc public protocol NavigationBarBackgroundHelperDelegate {
+    
+    /// Called before the backgroundView capturing the bar background attribute.
+    /// It is the best time for you to do additional change to the navigation bar background attr.
+    /// After this function is called, the background will synchronize the bar background.
+    @objc optional func navigationBarBackgroundAttrDidRestore()
+    
+    /// Called after the navigation bar foreground attribute restored.
+    /// Usually when the viewController being appearing and restore the stashed bar foreground attr.
+    /// Do additional change if you have modified the navigation bar.(e.g, you have set the bar tint color according to scrollview offset)
+    @objc optional func navigationBarForegroundAttrDidRestore()
+    
+}
+
 open class NavigationBarBackgroundHelper {
     
     open private(set) var view: NavigationBarBackgroundView?
@@ -126,7 +140,8 @@ fileprivate let __init__: Bool = {
         }
         try UIViewController.exchange(#selector(UIViewController.viewWillAppear(_:)), withSEL: #selector(UIViewController.jw_viewWillAppear(_:)))
     } catch {
-        print(error)
+        debugPrint(error)
+        print()
     }
     return true
 }()

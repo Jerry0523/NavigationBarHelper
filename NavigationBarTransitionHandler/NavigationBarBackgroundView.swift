@@ -119,8 +119,6 @@ open class NavigationBarBackgroundView: UIView {
     
     private let shadowImageView = UIImageView()
     
-    private var isDismissed = false
-    
 }
 
 extension UIBarStyle {
