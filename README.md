@@ -12,6 +12,7 @@ Usage
 NavigationBarBackgroundHelper.load()
 ```
 > swizzle UIViewController.viewSafeAreaInsetsDidChange
+
 > swizzle UIViewController.viewWillAppear(_:)
 
 ### For a viewController, use the function below to modify the navigation bar.
