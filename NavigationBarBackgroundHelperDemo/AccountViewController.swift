@@ -59,6 +59,10 @@ extension AccountViewController : NavigationBarBackgroundHelperDelegate {
 extension AccountViewController : UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard self.isViewLoaded, self.view.window != nil else {
+            return
+        }
+        
         let offsetY = scrollView.contentOffset.y
         let topEdge = view.safeAreaInsets.top
         barAlpha = offsetY >= (CollectionHeaderHeight - topEdge) ? 1.0 : (offsetY < -topEdge ? 0 : (offsetY + topEdge) / CollectionHeaderHeight)

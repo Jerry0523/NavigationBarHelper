@@ -16,13 +16,15 @@
 		C42C1D802046DF4B004B33D2 /* NavigationBarBackgroundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42C1D7F2046DF4B004B33D2 /* NavigationBarBackgroundHelper.swift */; };
 		C42C1D822046DFA3004B33D2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42C1D812046DFA3004B33D2 /* Utilities.swift */; };
 		C42C1D882048F49A004B33D2 /* NavigationBarBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42C1D872048F49A004B33D2 /* NavigationBarBackgroundView.swift */; };
+		C455E72B2057E83400A3211D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C455E7292057E83400A3211D /* README.md */; };
+		C455E72C2057E83400A3211D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C455E72A2057E83400A3211D /* LICENSE */; };
 		C47A327F2051781F00C46FD5 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A327E2051781F00C46FD5 /* ListViewController.swift */; };
 		C47A328120517B3600C46FD5 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A328020517B3600C46FD5 /* AccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C403446220525890002BF6AC /* SetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewController.swift; sourceTree = "<group>"; };
-		C42C1D692046CB44004B33D2 /* NavigationBarTransitionHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationBarTransitionHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C42C1D692046CB44004B33D2 /* NavigationBarBackgroundHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationBarBackgroundHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42C1D6C2046CB44004B33D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C42C1D6E2046CB44004B33D2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C42C1D712046CB44004B33D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -32,6 +34,8 @@
 		C42C1D7F2046DF4B004B33D2 /* NavigationBarBackgroundHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarBackgroundHelper.swift; sourceTree = "<group>"; };
 		C42C1D812046DFA3004B33D2 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C42C1D872048F49A004B33D2 /* NavigationBarBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarBackgroundView.swift; sourceTree = "<group>"; };
+		C455E7292057E83400A3211D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C455E72A2057E83400A3211D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C47A327E2051781F00C46FD5 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		C47A328020517B3600C46FD5 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -50,8 +54,10 @@
 		C42C1D602046CB44004B33D2 = {
 			isa = PBXGroup;
 			children = (
-				C42C1D7E2046DF28004B33D2 /* NavigationBarTransitionHandler */,
-				C42C1D6B2046CB44004B33D2 /* NavigationBarTransitionHandlerDemo */,
+				C42C1D7E2046DF28004B33D2 /* NavigationBarBackgroundHelper */,
+				C42C1D6B2046CB44004B33D2 /* NavigationBarBackgroundHelperDemo */,
+				C455E72A2057E83400A3211D /* LICENSE */,
+				C455E7292057E83400A3211D /* README.md */,
 				C42C1D6A2046CB44004B33D2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,12 +65,12 @@
 		C42C1D6A2046CB44004B33D2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C42C1D692046CB44004B33D2 /* NavigationBarTransitionHandler.app */,
+				C42C1D692046CB44004B33D2 /* NavigationBarBackgroundHelper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C42C1D6B2046CB44004B33D2 /* NavigationBarTransitionHandlerDemo */ = {
+		C42C1D6B2046CB44004B33D2 /* NavigationBarBackgroundHelperDemo */ = {
 			isa = PBXGroup;
 			children = (
 				C42C1D6C2046CB44004B33D2 /* AppDelegate.swift */,
@@ -77,25 +83,25 @@
 				C42C1D752046CB44004B33D2 /* LaunchScreen.storyboard */,
 				C42C1D782046CB44004B33D2 /* Info.plist */,
 			);
-			path = NavigationBarTransitionHandlerDemo;
+			path = NavigationBarBackgroundHelperDemo;
 			sourceTree = "<group>";
 		};
-		C42C1D7E2046DF28004B33D2 /* NavigationBarTransitionHandler */ = {
+		C42C1D7E2046DF28004B33D2 /* NavigationBarBackgroundHelper */ = {
 			isa = PBXGroup;
 			children = (
 				C42C1D7F2046DF4B004B33D2 /* NavigationBarBackgroundHelper.swift */,
 				C42C1D872048F49A004B33D2 /* NavigationBarBackgroundView.swift */,
 				C42C1D812046DFA3004B33D2 /* Utilities.swift */,
 			);
-			path = NavigationBarTransitionHandler;
+			path = NavigationBarBackgroundHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C42C1D682046CB44004B33D2 /* NavigationBarTransitionHandler */ = {
+		C42C1D682046CB44004B33D2 /* NavigationBarBackgroundHelper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C42C1D7B2046CB44004B33D2 /* Build configuration list for PBXNativeTarget "NavigationBarTransitionHandler" */;
+			buildConfigurationList = C42C1D7B2046CB44004B33D2 /* Build configuration list for PBXNativeTarget "NavigationBarBackgroundHelper" */;
 			buildPhases = (
 				C42C1D652046CB44004B33D2 /* Sources */,
 				C42C1D662046CB44004B33D2 /* Frameworks */,
@@ -105,9 +111,9 @@
 			);
 			dependencies = (
 			);
-			name = NavigationBarTransitionHandler;
+			name = NavigationBarBackgroundHelper;
 			productName = NavigationBarTransitionHandler;
-			productReference = C42C1D692046CB44004B33D2 /* NavigationBarTransitionHandler.app */;
+			productReference = C42C1D692046CB44004B33D2 /* NavigationBarBackgroundHelper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -126,7 +132,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C42C1D642046CB44004B33D2 /* Build configuration list for PBXProject "NavigationBarTransitionHandler" */;
+			buildConfigurationList = C42C1D642046CB44004B33D2 /* Build configuration list for PBXProject "NavigationBarBackgroundHelper" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -139,7 +145,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C42C1D682046CB44004B33D2 /* NavigationBarTransitionHandler */,
+				C42C1D682046CB44004B33D2 /* NavigationBarBackgroundHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -151,7 +157,9 @@
 			files = (
 				C42C1D772046CB44004B33D2 /* LaunchScreen.storyboard in Resources */,
 				C42C1D742046CB44004B33D2 /* Assets.xcassets in Resources */,
+				C455E72B2057E83400A3211D /* README.md in Resources */,
 				C42C1D722046CB44004B33D2 /* Main.storyboard in Resources */,
+				C455E72C2057E83400A3211D /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NavigationBarTransitionHandlerDemo/Info.plist;
+				INFOPLIST_FILE = NavigationBarBackgroundHelperDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jerry.NavigationBarTransitionHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -321,7 +329,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NavigationBarTransitionHandlerDemo/Info.plist;
+				INFOPLIST_FILE = NavigationBarBackgroundHelperDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jerry.NavigationBarTransitionHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -333,7 +341,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C42C1D642046CB44004B33D2 /* Build configuration list for PBXProject "NavigationBarTransitionHandler" */ = {
+		C42C1D642046CB44004B33D2 /* Build configuration list for PBXProject "NavigationBarBackgroundHelper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C42C1D792046CB44004B33D2 /* Debug */,
@@ -342,7 +350,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C42C1D7B2046CB44004B33D2 /* Build configuration list for PBXNativeTarget "NavigationBarTransitionHandler" */ = {
+		C42C1D7B2046CB44004B33D2 /* Build configuration list for PBXNativeTarget "NavigationBarBackgroundHelper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C42C1D7C2046CB44004B33D2 /* Debug */,
