@@ -1,4 +1,4 @@
-
+[![Build Status](https://travis-ci.org/Jerry0523/NavigationBarBackgroundHelper.svg?branch=master)](https://travis-ci.org/Jerry0523/NavigationBarBackgroundHelper)
 # NavigationBarBackgroundHelper
 A library that helps to manage the navigation bar style. It helps to remember bar attributes between different VCs and keep the transition smooth.
 
