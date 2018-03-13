@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NavigationBarBackgroundHelper
 
 class AccountViewController: UIViewController {
     

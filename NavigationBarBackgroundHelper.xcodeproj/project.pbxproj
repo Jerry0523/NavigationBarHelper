@@ -13,35 +13,73 @@
 		C42C1D722046CB44004B33D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C42C1D702046CB44004B33D2 /* Main.storyboard */; };
 		C42C1D742046CB44004B33D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C42C1D732046CB44004B33D2 /* Assets.xcassets */; };
 		C42C1D772046CB44004B33D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C42C1D752046CB44004B33D2 /* LaunchScreen.storyboard */; };
-		C42C1D802046DF4B004B33D2 /* NavigationBarBackgroundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42C1D7F2046DF4B004B33D2 /* NavigationBarBackgroundHelper.swift */; };
-		C42C1D822046DFA3004B33D2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42C1D812046DFA3004B33D2 /* Utilities.swift */; };
-		C42C1D882048F49A004B33D2 /* NavigationBarBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42C1D872048F49A004B33D2 /* NavigationBarBackgroundView.swift */; };
 		C455E72B2057E83400A3211D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C455E7292057E83400A3211D /* README.md */; };
 		C455E72C2057E83400A3211D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C455E72A2057E83400A3211D /* LICENSE */; };
+		C455E7362057EE2E00A3211D /* NavigationBarBackgroundHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = C455E7342057EE2E00A3211D /* NavigationBarBackgroundHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C455E7392057EE2E00A3211D /* NavigationBarBackgroundHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C455E7322057EE2E00A3211D /* NavigationBarBackgroundHelper.framework */; };
+		C455E73A2057EE2E00A3211D /* NavigationBarBackgroundHelper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C455E7322057EE2E00A3211D /* NavigationBarBackgroundHelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C455E7422057EE9800A3211D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E73F2057EE9800A3211D /* Utilities.swift */; };
+		C455E7432057EE9800A3211D /* NavigationBarBackgroundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E7402057EE9800A3211D /* NavigationBarBackgroundHelper.swift */; };
+		C455E7442057EE9800A3211D /* NavigationBarBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E7412057EE9800A3211D /* NavigationBarBackgroundView.swift */; };
 		C47A327F2051781F00C46FD5 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A327E2051781F00C46FD5 /* ListViewController.swift */; };
 		C47A328120517B3600C46FD5 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A328020517B3600C46FD5 /* AccountViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C455E7372057EE2E00A3211D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C42C1D612046CB44004B33D2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C455E7312057EE2E00A3211D;
+			remoteInfo = NavigationBarBackgroundHelper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C455E73E2057EE2E00A3211D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C455E73A2057EE2E00A3211D /* NavigationBarBackgroundHelper.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C403446220525890002BF6AC /* SetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewController.swift; sourceTree = "<group>"; };
-		C42C1D692046CB44004B33D2 /* NavigationBarBackgroundHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationBarBackgroundHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C42C1D692046CB44004B33D2 /* NavigationBarBackgroundHelperDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationBarBackgroundHelperDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42C1D6C2046CB44004B33D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C42C1D6E2046CB44004B33D2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C42C1D712046CB44004B33D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C42C1D732046CB44004B33D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C42C1D762046CB44004B33D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C42C1D782046CB44004B33D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C42C1D7F2046DF4B004B33D2 /* NavigationBarBackgroundHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarBackgroundHelper.swift; sourceTree = "<group>"; };
-		C42C1D812046DFA3004B33D2 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		C42C1D872048F49A004B33D2 /* NavigationBarBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarBackgroundView.swift; sourceTree = "<group>"; };
 		C455E7292057E83400A3211D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C455E72A2057E83400A3211D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		C455E7322057EE2E00A3211D /* NavigationBarBackgroundHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NavigationBarBackgroundHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C455E7342057EE2E00A3211D /* NavigationBarBackgroundHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationBarBackgroundHelper.h; sourceTree = "<group>"; };
+		C455E7352057EE2E00A3211D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C455E73F2057EE9800A3211D /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		C455E7402057EE9800A3211D /* NavigationBarBackgroundHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarBackgroundHelper.swift; sourceTree = "<group>"; };
+		C455E7412057EE9800A3211D /* NavigationBarBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarBackgroundView.swift; sourceTree = "<group>"; };
 		C47A327E2051781F00C46FD5 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		C47A328020517B3600C46FD5 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C42C1D662046CB44004B33D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C455E7392057EE2E00A3211D /* NavigationBarBackgroundHelper.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C455E72E2057EE2E00A3211D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -54,7 +92,7 @@
 		C42C1D602046CB44004B33D2 = {
 			isa = PBXGroup;
 			children = (
-				C42C1D7E2046DF28004B33D2 /* NavigationBarBackgroundHelper */,
+				C455E7332057EE2E00A3211D /* NavigationBarBackgroundHelper */,
 				C42C1D6B2046CB44004B33D2 /* NavigationBarBackgroundHelperDemo */,
 				C455E72A2057E83400A3211D /* LICENSE */,
 				C455E7292057E83400A3211D /* README.md */,
@@ -65,7 +103,8 @@
 		C42C1D6A2046CB44004B33D2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C42C1D692046CB44004B33D2 /* NavigationBarBackgroundHelper.app */,
+				C42C1D692046CB44004B33D2 /* NavigationBarBackgroundHelperDemo.app */,
+				C455E7322057EE2E00A3211D /* NavigationBarBackgroundHelper.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,35 +125,68 @@
 			path = NavigationBarBackgroundHelperDemo;
 			sourceTree = "<group>";
 		};
-		C42C1D7E2046DF28004B33D2 /* NavigationBarBackgroundHelper */ = {
+		C455E7332057EE2E00A3211D /* NavigationBarBackgroundHelper */ = {
 			isa = PBXGroup;
 			children = (
-				C42C1D7F2046DF4B004B33D2 /* NavigationBarBackgroundHelper.swift */,
-				C42C1D872048F49A004B33D2 /* NavigationBarBackgroundView.swift */,
-				C42C1D812046DFA3004B33D2 /* Utilities.swift */,
+				C455E7402057EE9800A3211D /* NavigationBarBackgroundHelper.swift */,
+				C455E7412057EE9800A3211D /* NavigationBarBackgroundView.swift */,
+				C455E73F2057EE9800A3211D /* Utilities.swift */,
+				C455E7342057EE2E00A3211D /* NavigationBarBackgroundHelper.h */,
+				C455E7352057EE2E00A3211D /* Info.plist */,
 			);
 			path = NavigationBarBackgroundHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		C455E72F2057EE2E00A3211D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C455E7362057EE2E00A3211D /* NavigationBarBackgroundHelper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		C42C1D682046CB44004B33D2 /* NavigationBarBackgroundHelper */ = {
+		C42C1D682046CB44004B33D2 /* NavigationBarBackgroundHelperDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C42C1D7B2046CB44004B33D2 /* Build configuration list for PBXNativeTarget "NavigationBarBackgroundHelper" */;
+			buildConfigurationList = C42C1D7B2046CB44004B33D2 /* Build configuration list for PBXNativeTarget "NavigationBarBackgroundHelperDemo" */;
 			buildPhases = (
 				C42C1D652046CB44004B33D2 /* Sources */,
 				C42C1D662046CB44004B33D2 /* Frameworks */,
 				C42C1D672046CB44004B33D2 /* Resources */,
+				C455E73E2057EE2E00A3211D /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C455E7382057EE2E00A3211D /* PBXTargetDependency */,
+			);
+			name = NavigationBarBackgroundHelperDemo;
+			productName = NavigationBarTransitionHandler;
+			productReference = C42C1D692046CB44004B33D2 /* NavigationBarBackgroundHelperDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C455E7312057EE2E00A3211D /* NavigationBarBackgroundHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C455E73B2057EE2E00A3211D /* Build configuration list for PBXNativeTarget "NavigationBarBackgroundHelper" */;
+			buildPhases = (
+				C455E72D2057EE2E00A3211D /* Sources */,
+				C455E72E2057EE2E00A3211D /* Frameworks */,
+				C455E72F2057EE2E00A3211D /* Headers */,
+				C455E7302057EE2E00A3211D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = NavigationBarBackgroundHelper;
-			productName = NavigationBarTransitionHandler;
-			productReference = C42C1D692046CB44004B33D2 /* NavigationBarBackgroundHelper.app */;
-			productType = "com.apple.product-type.application";
+			productName = NavigationBarBackgroundHelper;
+			productReference = C455E7322057EE2E00A3211D /* NavigationBarBackgroundHelper.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -128,6 +200,11 @@
 				TargetAttributes = {
 					C42C1D682046CB44004B33D2 = {
 						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					C455E7312057EE2E00A3211D = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -145,7 +222,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C42C1D682046CB44004B33D2 /* NavigationBarBackgroundHelper */,
+				C42C1D682046CB44004B33D2 /* NavigationBarBackgroundHelperDemo */,
+				C455E7312057EE2E00A3211D /* NavigationBarBackgroundHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -163,6 +241,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C455E7302057EE2E00A3211D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -174,14 +259,29 @@
 				C42C1D6D2046CB44004B33D2 /* AppDelegate.swift in Sources */,
 				C47A328120517B3600C46FD5 /* AccountViewController.swift in Sources */,
 				C47A327F2051781F00C46FD5 /* ListViewController.swift in Sources */,
-				C42C1D802046DF4B004B33D2 /* NavigationBarBackgroundHelper.swift in Sources */,
 				C403446320525890002BF6AC /* SetViewController.swift in Sources */,
-				C42C1D882048F49A004B33D2 /* NavigationBarBackgroundView.swift in Sources */,
-				C42C1D822046DFA3004B33D2 /* Utilities.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C455E72D2057EE2E00A3211D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C455E7422057EE9800A3211D /* Utilities.swift in Sources */,
+				C455E7432057EE9800A3211D /* NavigationBarBackgroundHelper.swift in Sources */,
+				C455E7442057EE9800A3211D /* NavigationBarBackgroundView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C455E7382057EE2E00A3211D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C455E7312057EE2E00A3211D /* NavigationBarBackgroundHelper */;
+			targetProxy = C455E7372057EE2E00A3211D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C42C1D702046CB44004B33D2 /* Main.storyboard */ = {
@@ -313,6 +413,7 @@
 		C42C1D7C2046CB44004B33D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = NavigationBarBackgroundHelperDemo/Info.plist;
@@ -327,6 +428,7 @@
 		C42C1D7D2046CB44004B33D2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = NavigationBarBackgroundHelperDemo/Info.plist;
@@ -335,6 +437,55 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C455E73C2057EE2E00A3211D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = NavigationBarBackgroundHelper/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jerry.NavigationBarBackgroundHelper;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C455E73D2057EE2E00A3211D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = NavigationBarBackgroundHelper/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jerry.NavigationBarBackgroundHelper;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -350,11 +501,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C42C1D7B2046CB44004B33D2 /* Build configuration list for PBXNativeTarget "NavigationBarBackgroundHelper" */ = {
+		C42C1D7B2046CB44004B33D2 /* Build configuration list for PBXNativeTarget "NavigationBarBackgroundHelperDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C42C1D7C2046CB44004B33D2 /* Debug */,
 				C42C1D7D2046CB44004B33D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C455E73B2057EE2E00A3211D /* Build configuration list for PBXNativeTarget "NavigationBarBackgroundHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C455E73C2057EE2E00A3211D /* Debug */,
+				C455E73D2057EE2E00A3211D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
