@@ -11,8 +11,8 @@ Usage
 ```swift
 NavigationBarBackgroundHelper.load()
 ```
-- swizzle UIViewController.viewSafeAreaInsetsDidChange
-- swizzle UIViewController.viewWillAppear(_:)
+> swizzle UIViewController.viewSafeAreaInsetsDidChange
+> swizzle UIViewController.viewWillAppear(_:)
 
 ### For a viewController, use the function below to modify the navigation bar.
 
@@ -20,8 +20,11 @@ NavigationBarBackgroundHelper.load()
 override func viewDidLoad() {
     super.viewDidLoad()
     barBackgroundHelper.performNavigationBarUpdates {
-        //codes for navigation bar update
+        //Codes for navigation bar update.
         //e.g. self.navigationController?.navigationBar.tintColor = UIColor.white
+        //Any attribute (background image/tintColor/barTintColor/barStyle etc) will be remembered by the library.
+        //This functin will create a mirror background view of the navigation bar and clear the bar background.
+        //Any change to the navigation bar background(background image/barTintColor/barStyle/shadowImage) in this closure will be syncronized with the mirror view.
     }
 }
 ```
