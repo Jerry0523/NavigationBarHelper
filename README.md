@@ -23,12 +23,11 @@ override func viewDidLoad() {
     barBackgroundHelper.performNavigationBarUpdates {
         //Codes for navigation bar update.
         //e.g. self.navigationController?.navigationBar.tintColor = UIColor.white
-        //Any attribute (background image/tintColor/barTintColor/barStyle etc) will be remembered by the library.
-        //This functin will create a mirror background view of the navigation bar and clear the bar background.
-        //Any change to the navigation bar background(background image/barTintColor/barStyle/shadowImage) in this closure will be syncronized with the mirror view.
     }
 }
 ```
+
+>Any attribute (background image/tintColor/barTintColor/barStyle etc) will be remembered by the library.This function will create a mirror background view of the navigation bar and clear the bar background.Any change to the navigation bar background(background image/barTintColor/barStyle/shadowImage) in this closure will be syncronized with the mirror view.
 
 ### Protocol NavigationBarBackgroundHelperDelegate
 
