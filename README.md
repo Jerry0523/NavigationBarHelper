@@ -27,17 +27,17 @@ override func viewDidLoad() {
 }
 ```
 
->After calling the function above, any attribute (background image/tintColor/barTintColor/barStyle etc) will be remembered by the library. It will create a mirror background view (auto managed) of the navigation bar and clear the bar background (to provide a smooth transition). Any change to the navigation bar background(background image/barTintColor/barStyle/shadowImage) in this closure will be syncronized with the mirror view.
+>After calling the function above, any attribute (background image/tintColor/barTintColor/barStyle etc) will be remembered by the library. It will create a mirror background view of the navigation bar (auto managed) and clear the bar background (to provide a smooth transition). Any change to the navigation bar background (background image/barTintColor/barStyle/shadowImage) in the closure will be syncronized with the mirror view.
 
 ### Protocol NavigationBarBackgroundHelperDelegate
 
 - navigationBarBackgroundAttrDidRestore
 
->Called before the backgroundView capturing the bar background attribute. It is the best time for you to do additional change to the navigation bar background attr. After this function is called, the background will synchronize the bar background.
+>Called before the mirror view capturing the bar's background attribute. It is the best time for you to do additional change to the bar's background attr. After this function is called, the mirror background view will synchronize with the bar's background.
 
 - navigationBarForegroundAttrDidRestore
 
->Called after the navigation bar foreground attribute restored. Usually when the viewController being appearing and restore the stashed bar foreground attr. Do additional change if you have modified the navigation bar.(e.g, you have set the bar tint color according to scrollview offset)
+>Called after the navigation bar's foreground attribute being restored, especially when the viewController's appearing. Do additional change if you have modified the navigation bar.(e.g, you have set the bar tint color according to scrollview offset)
 
 
 License

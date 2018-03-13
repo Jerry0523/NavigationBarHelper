@@ -25,13 +25,12 @@ import UIKit
 
 @objc public protocol NavigationBarBackgroundHelperDelegate {
     
-    /// Called before the backgroundView capturing the bar background attribute.
-    /// It is the best time for you to do additional change to the navigation bar background attr.
-    /// After this function is called, the background will synchronize the bar background.
+    /// Called before the mirror view capturing the bar's background attribute.
+    /// It is the best time for you to do additional change to the bar's background attr.
+    /// After this function is called, the mirror background view will synchronize with the bar's background.
     @objc optional func navigationBarBackgroundAttrDidRestore()
     
-    /// Called after the navigation bar foreground attribute restored.
-    /// Usually when the viewController being appearing and restore the stashed bar foreground attr.
+    /// Called after the navigation bar's foreground attribute being restored, especially when the viewController's appearing.
     /// Do additional change if you have modified the navigation bar.(e.g, you have set the bar tint color according to scrollview offset)
     @objc optional func navigationBarForegroundAttrDidRestore()
     
