@@ -23,7 +23,36 @@
 
 import UIKit
 
+extension UIViewController {
+    
+    open var barBackgroundHelper: NavigationBarBackgroundHelper {
+        
+        get {
+            var handler = getStoredBarBackgroundHelper()
+            if handler == nil {
+                handler = NavigationBarBackgroundHelper(viewController: self)
+                self.barBackgroundHelper = handler!
+            }
+            return handler!
+        }
+        
+        set {
+            objc_setAssociatedObject(self, &BarHelperKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        
+    }
+    
+    func getStoredBarBackgroundHelper() -> NavigationBarBackgroundHelper? {
+        return objc_getAssociatedObject(self, &BarHelperKey) as? NavigationBarBackgroundHelper
+    }
+    
+}
+
 @objc public protocol NavigationBarBackgroundHelperDelegate {
+    
+    /// Return true if you want to restore the bar foreground attribute manually. Otherwise, the library will do it automatically.
+    /// If you have changed the bar foreground attr manually (e.g., change the barTintColor by scrollView scrolling), you should override this function and return true to take over the bar foreground attr restoration.
+    @objc optional func takeOverNavigationBarForegroundAttrRestoration() -> Bool
     
     /// Called before the mirror view capturing the bar's background attribute.
     /// It is the best time for you to do additional change to the bar's background attr.
@@ -54,20 +83,32 @@ open class NavigationBarBackgroundHelper {
         guard let vc = viewController else {
             return
         }
-        let insetsTop = vc.view.safeAreaInsets.top
+        let insetsTop = max(vc.view.safeAreaInsets.top, vc.navigationController?.navigationBar.frame.size.height ?? 0)
         view?.frame = CGRect(x: 0, y: 0 + (view?.transform.ty ?? 0), width: view?.frame.size.width ?? 0, height: insetsTop)
     }
     
     open func synchronizeForegroundAttr() {
-        guard let bar = viewController?.navigationController?.navigationBar else {
+        guard let nc = viewController?.navigationController else {
             return
         }
-        viewController?.restoreForegroundAttr(forNavigationBar: bar)
+        let bar = nc.navigationBar
+        restoreForegroundAttr(forNavigationBar: bar)
+        
+        view?.isHidden = isNavigationBarHidden
+        if nc.isNavigationBarHidden != isNavigationBarHidden {
+            nc.setNavigationBarHidden(isNavigationBarHidden, animated: true)
+        }
     }
     
-    private weak var viewController: UIViewController?
+    var backgroundAttr: NavigationBarBackgroundAttr?
     
-    private var keyPathObservations: [NSKeyValueObservation]?
+    var foregroundAttr: NavigationBarForegroundAttr?
+    
+    var isNavigationBarHidden = false
+    
+    weak var viewController: UIViewController?
+    
+    var keyPathObservations: [NSKeyValueObservation]?
     
 }
 
@@ -82,10 +123,15 @@ extension NavigationBarBackgroundHelper {
 extension NavigationBarBackgroundHelper {
     
     private func beginUpdate() {
-        guard let vc = viewController, let bar = vc.navigationController?.navigationBar else {
-            return
+        
+        guard
+            let bar = viewController?.navigationController?.navigationBar,
+            let vcs = viewController?.navigationController?.viewControllers, vcs.count >= 2,
+            let helper = vcs[vcs.count - 2].getStoredBarBackgroundHelper() else {
+                return
         }
-        vc.restoreBackgroundAttr(forNavigationBar: bar)
+        
+        helper.restoreBackgroundAttr(forNavigationBar: bar)
     }
     
     private func endUpdate() {
@@ -119,8 +165,10 @@ extension NavigationBarBackgroundHelper {
         guard let bar = viewController?.navigationController?.navigationBar else {
             return
         }
-        viewController?.stashForegroundAttr(forNavigationBar: bar)
-        viewController?.stashBackgroundAttr(forNavigationBar: bar)
+        stashForegroundAttr(forNavigationBar: bar)
+        stashBackgroundAttr(forNavigationBar: bar)
+        isNavigationBarHidden = viewController?.navigationController?.isNavigationBarHidden ?? false
+        
         [.default, .compact, .defaultPrompt, .compactPrompt].forEach{ bar.setBackgroundImage(TransparentImage, for: $0) }
         bar.shadowImage = TransparentImage
         bar.isTranslucent = true
@@ -128,7 +176,28 @@ extension NavigationBarBackgroundHelper {
     
 }
 
-let TransparentImage = UIImage(color: UIColor.clear)
+extension UIImage {
+    
+    convenience init?(color: UIColor, size: CGSize? = CGSize(width: 1.0, height: 1.0)) {
+        let rect = CGRect(origin: CGPoint.zero, size: size ?? CGSize(width: 1.0, height: 1.0))
+        
+        UIGraphicsBeginImageContext(rect.size)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        
+        let ctx = UIGraphicsGetCurrentContext()
+        ctx?.setFillColor(color.cgColor)
+        ctx?.fill(rect)
+        guard let cgImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage else {
+            return nil
+        }
+        self.init(cgImage: cgImage)
+    }
+    
+}
+
+fileprivate let TransparentImage = UIImage(color: UIColor.clear)
 
 fileprivate let __init__: Bool = {
     do {
@@ -144,3 +213,5 @@ fileprivate let __init__: Bool = {
     }
     return true
 }()
+
+private var BarHelperKey: Void?

@@ -18,9 +18,12 @@
 		C455E7362057EE2E00A3211D /* NavigationBarBackgroundHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = C455E7342057EE2E00A3211D /* NavigationBarBackgroundHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C455E7392057EE2E00A3211D /* NavigationBarBackgroundHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C455E7322057EE2E00A3211D /* NavigationBarBackgroundHelper.framework */; };
 		C455E73A2057EE2E00A3211D /* NavigationBarBackgroundHelper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C455E7322057EE2E00A3211D /* NavigationBarBackgroundHelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C455E7422057EE9800A3211D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E73F2057EE9800A3211D /* Utilities.swift */; };
 		C455E7432057EE9800A3211D /* NavigationBarBackgroundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E7402057EE9800A3211D /* NavigationBarBackgroundHelper.swift */; };
 		C455E7442057EE9800A3211D /* NavigationBarBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E7412057EE9800A3211D /* NavigationBarBackgroundView.swift */; };
+		C455E7462058CE1200A3211D /* NavigationBarBackgroundHelper+AttrRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E7452058CE1200A3211D /* NavigationBarBackgroundHelper+AttrRestoration.swift */; };
+		C455E7482058CEAB00A3211D /* UIViewController+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E7472058CEAB00A3211D /* UIViewController+Swizzle.swift */; };
+		C455E74B2058ED6200A3211D /* __init__.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E7492058ED6200A3211D /* __init__.swift */; };
+		C455E74C2058ED6200A3211D /* UIViewController+PopHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E74A2058ED6200A3211D /* UIViewController+PopHandler.swift */; };
 		C47A327F2051781F00C46FD5 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A327E2051781F00C46FD5 /* ListViewController.swift */; };
 		C47A328120517B3600C46FD5 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A328020517B3600C46FD5 /* AccountViewController.swift */; };
 /* End PBXBuildFile section */
@@ -63,9 +66,12 @@
 		C455E7322057EE2E00A3211D /* NavigationBarBackgroundHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NavigationBarBackgroundHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C455E7342057EE2E00A3211D /* NavigationBarBackgroundHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationBarBackgroundHelper.h; sourceTree = "<group>"; };
 		C455E7352057EE2E00A3211D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C455E73F2057EE9800A3211D /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C455E7402057EE9800A3211D /* NavigationBarBackgroundHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarBackgroundHelper.swift; sourceTree = "<group>"; };
 		C455E7412057EE9800A3211D /* NavigationBarBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarBackgroundView.swift; sourceTree = "<group>"; };
+		C455E7452058CE1200A3211D /* NavigationBarBackgroundHelper+AttrRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBarBackgroundHelper+AttrRestoration.swift"; sourceTree = "<group>"; };
+		C455E7472058CEAB00A3211D /* UIViewController+Swizzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Swizzle.swift"; sourceTree = "<group>"; };
+		C455E7492058ED6200A3211D /* __init__.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = __init__.swift; sourceTree = "<group>"; };
+		C455E74A2058ED6200A3211D /* UIViewController+PopHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PopHandler.swift"; sourceTree = "<group>"; };
 		C47A327E2051781F00C46FD5 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		C47A328020517B3600C46FD5 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +123,8 @@
 				C47A327E2051781F00C46FD5 /* ListViewController.swift */,
 				C47A328020517B3600C46FD5 /* AccountViewController.swift */,
 				C403446220525890002BF6AC /* SetViewController.swift */,
+				C455E7492058ED6200A3211D /* __init__.swift */,
+				C455E74A2058ED6200A3211D /* UIViewController+PopHandler.swift */,
 				C42C1D702046CB44004B33D2 /* Main.storyboard */,
 				C42C1D732046CB44004B33D2 /* Assets.xcassets */,
 				C42C1D752046CB44004B33D2 /* LaunchScreen.storyboard */,
@@ -130,7 +138,8 @@
 			children = (
 				C455E7402057EE9800A3211D /* NavigationBarBackgroundHelper.swift */,
 				C455E7412057EE9800A3211D /* NavigationBarBackgroundView.swift */,
-				C455E73F2057EE9800A3211D /* Utilities.swift */,
+				C455E7452058CE1200A3211D /* NavigationBarBackgroundHelper+AttrRestoration.swift */,
+				C455E7472058CEAB00A3211D /* UIViewController+Swizzle.swift */,
 				C455E7342057EE2E00A3211D /* NavigationBarBackgroundHelper.h */,
 				C455E7352057EE2E00A3211D /* Info.plist */,
 			);
@@ -256,9 +265,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C42C1D6F2046CB44004B33D2 /* HomeViewController.swift in Sources */,
+				C455E74B2058ED6200A3211D /* __init__.swift in Sources */,
 				C42C1D6D2046CB44004B33D2 /* AppDelegate.swift in Sources */,
 				C47A328120517B3600C46FD5 /* AccountViewController.swift in Sources */,
 				C47A327F2051781F00C46FD5 /* ListViewController.swift in Sources */,
+				C455E74C2058ED6200A3211D /* UIViewController+PopHandler.swift in Sources */,
 				C403446320525890002BF6AC /* SetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,7 +278,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C455E7422057EE9800A3211D /* Utilities.swift in Sources */,
+				C455E7462058CE1200A3211D /* NavigationBarBackgroundHelper+AttrRestoration.swift in Sources */,
+				C455E7482058CEAB00A3211D /* UIViewController+Swizzle.swift in Sources */,
 				C455E7432057EE9800A3211D /* NavigationBarBackgroundHelper.swift in Sources */,
 				C455E7442057EE9800A3211D /* NavigationBarBackgroundView.swift in Sources */,
 			);

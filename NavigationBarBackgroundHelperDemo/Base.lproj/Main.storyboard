@@ -35,7 +35,7 @@
         <!--Home-->
         <scene sceneID="6UW-nc-Xz1">
             <objects>
-                <viewController id="Ajh-7I-WVN" customClass="HomeViewController" customModule="NavigationBarTransitionHandler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ajh-7I-WVN" customClass="HomeViewController" customModule="NavigationBarBackgroundHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" id="AKG-rl-nw6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -88,7 +88,7 @@
         <!--List-->
         <scene sceneID="8w1-oR-9N4">
             <objects>
-                <tableViewController id="yRg-5Q-UMz" customClass="ListViewController" customModule="NavigationBarTransitionHandler" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="yRg-5Q-UMz" customClass="ListViewController" customModule="NavigationBarBackgroundHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sTg-Mf-DMK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -154,7 +154,7 @@
         <!--Account View Controller-->
         <scene sceneID="wgL-Hv-7W6">
             <objects>
-                <viewController id="xIw-mP-1S6" customClass="AccountViewController" customModule="NavigationBarTransitionHandler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xIw-mP-1S6" customClass="AccountViewController" customModule="NavigationBarBackgroundHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nbt-v6-rfR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -176,8 +176,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHf-AY-3Tr">
-                                                    <rect key="frame" x="19.5" y="28" width="41" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHf-AY-3Tr">
+                                                    <rect key="frame" x="3.5" y="28" width="73" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -197,8 +197,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXi-jv-oOP">
-                                                    <rect key="frame" x="19.5" y="28" width="41" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXi-jv-oOP">
+                                                    <rect key="frame" x="15" y="28" width="50" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -218,8 +218,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="客服" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBh-FE-Qnz">
-                                                    <rect key="frame" x="19.5" y="28" width="41" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBh-FE-Qnz">
+                                                    <rect key="frame" x="7.5" y="28" width="65" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -244,14 +244,14 @@
                                                 <constraint firstAttribute="height" constant="80" id="juP-j6-lCl"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="玉带林中挂" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5td-FK-M7l">
-                                            <rect key="frame" x="141" y="113" width="92" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transparent Bar Background" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5td-FK-M7l">
+                                            <rect key="frame" x="71.5" y="113" width="231" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="初级会员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiB-Ze-NZZ">
-                                            <rect key="frame" x="157" y="142" width="61.5" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change by ScrollView Scrolling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiB-Ze-NZZ">
+                                            <rect key="frame" x="82" y="142" width="212.5" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -285,13 +285,14 @@
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="C05-qX-CfS">
                         <barButtonItem key="rightBarButtonItem" title="Set" id="Ai4-78-f8C">
                             <connections>
-                                <segue destination="jON-DO-q6c" kind="show" id="KT6-7B-d40"/>
+                                <segue destination="jON-DO-q6c" kind="show" identifier="set" id="KT6-7B-d40"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="bu2-HY-hRs" id="yXP-xj-zL2"/>
+                        <outlet property="flowLayout" destination="Et8-bJ-MZq" id="6ko-rm-ago"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xis-MM-BHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -301,7 +302,7 @@
         <!--Step 4-->
         <scene sceneID="hxs-r2-jn7">
             <objects>
-                <viewController id="jON-DO-q6c" customClass="SetViewController" customModule="NavigationBarTransitionHandler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jON-DO-q6c" customClass="SetViewController" customModule="NavigationBarBackgroundHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xwW-5h-gnl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -316,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gJb-Gk-vEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2105" y="143"/>
+            <point key="canvasLocation" x="2063" y="145"/>
         </scene>
     </scenes>
     <resources>

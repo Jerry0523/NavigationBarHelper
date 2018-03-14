@@ -2,7 +2,7 @@
 //  AccountViewController.swift
 //  NavigationBarTransitionHandler
 //
-//  Created by 王杰 on 2018/3/8.
+//  Created by Jerry Wong on 2018/3/8.
 //  Copyright © 2018年 com.jerry. All rights reserved.
 //
 
@@ -12,6 +12,8 @@ import NavigationBarBackgroundHelper
 class AccountViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     let cellReuseIdentifiers = ["order", "member", "callCenter"]
     
@@ -27,7 +29,7 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let itemWidth = (view.frame.size.width - 20 * 4) / 3.0
-        (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSize(width: itemWidth, height: itemWidth)
+        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         barBackgroundHelper.performNavigationBarUpdates {
             self.navigationController?.navigationBar.barStyle = .black
             self.navigationController?.navigationBar.barTintColor = UIColor.orange
@@ -55,6 +57,10 @@ extension AccountViewController : NavigationBarBackgroundHelperDelegate {
         }
     }
     
+    func takeOverNavigationBarForegroundAttrRestoration() -> Bool {
+        return barAlpha != nil
+    }
+    
 }
 
 extension AccountViewController : UICollectionViewDelegate {
@@ -67,6 +73,14 @@ extension AccountViewController : UICollectionViewDelegate {
         let offsetY = scrollView.contentOffset.y
         let topEdge = view.safeAreaInsets.top
         barAlpha = offsetY >= (CollectionHeaderHeight - topEdge) ? 1.0 : (offsetY < -topEdge ? 0 : (offsetY + topEdge) / CollectionHeaderHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item % 2 == 1 {
+            navigationController?.popViewController(animated: true)
+        } else {
+            performSegue(withIdentifier: "set", sender: nil)
+        }
     }
     
 }
@@ -82,7 +96,7 @@ extension AccountViewController : UICollectionViewDataSource {
         return cell
     }
     
-    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
     }
     

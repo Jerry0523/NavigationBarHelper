@@ -2,7 +2,7 @@
 //  NavigationBarBackgroundHelper.h
 //  NavigationBarBackgroundHelper
 //
-//  Created by 王杰 on 2018/3/13.
+//  Created by Jerry Wong on 2018/3/13.
 //  Copyright © 2018年 com.jerry. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  NavigationBarTransitionHandler
 //
-//  Created by 王杰 on 2018/2/28.
+//  Created by Jerry Wong on 2018/2/28.
 //  Copyright © 2018年 com.jerry. All rights reserved.
 //
 
@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        NavigationBarBackgroundHelperDemo.load()
         NavigationBarBackgroundHelper.load()
         return true
     }

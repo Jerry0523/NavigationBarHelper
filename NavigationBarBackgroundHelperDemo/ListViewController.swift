@@ -2,7 +2,7 @@
 //  ListViewController.swift
 //  NavigationBarTransitionHandler
 //
-//  Created by 王杰 on 2018/3/8.
+//  Created by Jerry Wong on 2018/3/8.
 //  Copyright © 2018年 com.jerry. All rights reserved.
 //
 
