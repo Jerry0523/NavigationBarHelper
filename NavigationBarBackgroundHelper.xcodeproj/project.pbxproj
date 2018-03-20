@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C403446320525890002BF6AC /* SetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403446220525890002BF6AC /* SetViewController.swift */; };
+		C424D7F52060E7C6006B9697 /* UIViewController+PopInterrupter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424D7F32060E7C6006B9697 /* UIViewController+PopInterrupter.swift */; };
+		C424D7F62060E7C6006B9697 /* UINavigationController+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424D7F42060E7C6006B9697 /* UINavigationController+Swizzle.swift */; };
 		C42C1D6D2046CB44004B33D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42C1D6C2046CB44004B33D2 /* AppDelegate.swift */; };
 		C42C1D6F2046CB44004B33D2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42C1D6E2046CB44004B33D2 /* HomeViewController.swift */; };
 		C42C1D722046CB44004B33D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C42C1D702046CB44004B33D2 /* Main.storyboard */; };
@@ -22,8 +24,6 @@
 		C455E7442057EE9800A3211D /* NavigationBarBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E7412057EE9800A3211D /* NavigationBarBackgroundView.swift */; };
 		C455E7462058CE1200A3211D /* NavigationBarBackgroundHelper+AttrRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E7452058CE1200A3211D /* NavigationBarBackgroundHelper+AttrRestoration.swift */; };
 		C455E7482058CEAB00A3211D /* UIViewController+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E7472058CEAB00A3211D /* UIViewController+Swizzle.swift */; };
-		C455E74B2058ED6200A3211D /* __init__.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E7492058ED6200A3211D /* __init__.swift */; };
-		C455E74C2058ED6200A3211D /* UIViewController+PopHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C455E74A2058ED6200A3211D /* UIViewController+PopHandler.swift */; };
 		C47A327F2051781F00C46FD5 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A327E2051781F00C46FD5 /* ListViewController.swift */; };
 		C47A328120517B3600C46FD5 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A328020517B3600C46FD5 /* AccountViewController.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +54,8 @@
 
 /* Begin PBXFileReference section */
 		C403446220525890002BF6AC /* SetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewController.swift; sourceTree = "<group>"; };
+		C424D7F32060E7C6006B9697 /* UIViewController+PopInterrupter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PopInterrupter.swift"; sourceTree = "<group>"; };
+		C424D7F42060E7C6006B9697 /* UINavigationController+Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Swizzle.swift"; sourceTree = "<group>"; };
 		C42C1D692046CB44004B33D2 /* NavigationBarBackgroundHelperDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationBarBackgroundHelperDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42C1D6C2046CB44004B33D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C42C1D6E2046CB44004B33D2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -70,8 +72,6 @@
 		C455E7412057EE9800A3211D /* NavigationBarBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarBackgroundView.swift; sourceTree = "<group>"; };
 		C455E7452058CE1200A3211D /* NavigationBarBackgroundHelper+AttrRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBarBackgroundHelper+AttrRestoration.swift"; sourceTree = "<group>"; };
 		C455E7472058CEAB00A3211D /* UIViewController+Swizzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Swizzle.swift"; sourceTree = "<group>"; };
-		C455E7492058ED6200A3211D /* __init__.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = __init__.swift; sourceTree = "<group>"; };
-		C455E74A2058ED6200A3211D /* UIViewController+PopHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PopHandler.swift"; sourceTree = "<group>"; };
 		C47A327E2051781F00C46FD5 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		C47A328020517B3600C46FD5 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,9 +95,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C424D7F22060E7C6006B9697 /* PopInterrupter */ = {
+			isa = PBXGroup;
+			children = (
+				C424D7F32060E7C6006B9697 /* UIViewController+PopInterrupter.swift */,
+				C424D7F42060E7C6006B9697 /* UINavigationController+Swizzle.swift */,
+			);
+			path = PopInterrupter;
+			sourceTree = "<group>";
+		};
 		C42C1D602046CB44004B33D2 = {
 			isa = PBXGroup;
 			children = (
+				C424D7F22060E7C6006B9697 /* PopInterrupter */,
 				C455E7332057EE2E00A3211D /* NavigationBarBackgroundHelper */,
 				C42C1D6B2046CB44004B33D2 /* NavigationBarBackgroundHelperDemo */,
 				C455E72A2057E83400A3211D /* LICENSE */,
@@ -123,8 +133,6 @@
 				C47A327E2051781F00C46FD5 /* ListViewController.swift */,
 				C47A328020517B3600C46FD5 /* AccountViewController.swift */,
 				C403446220525890002BF6AC /* SetViewController.swift */,
-				C455E7492058ED6200A3211D /* __init__.swift */,
-				C455E74A2058ED6200A3211D /* UIViewController+PopHandler.swift */,
 				C42C1D702046CB44004B33D2 /* Main.storyboard */,
 				C42C1D732046CB44004B33D2 /* Assets.xcassets */,
 				C42C1D752046CB44004B33D2 /* LaunchScreen.storyboard */,
@@ -264,12 +272,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C424D7F62060E7C6006B9697 /* UINavigationController+Swizzle.swift in Sources */,
 				C42C1D6F2046CB44004B33D2 /* HomeViewController.swift in Sources */,
-				C455E74B2058ED6200A3211D /* __init__.swift in Sources */,
 				C42C1D6D2046CB44004B33D2 /* AppDelegate.swift in Sources */,
+				C424D7F52060E7C6006B9697 /* UIViewController+PopInterrupter.swift in Sources */,
 				C47A328120517B3600C46FD5 /* AccountViewController.swift in Sources */,
 				C47A327F2051781F00C46FD5 /* ListViewController.swift in Sources */,
-				C455E74C2058ED6200A3211D /* UIViewController+PopHandler.swift in Sources */,
 				C403446320525890002BF6AC /* SetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

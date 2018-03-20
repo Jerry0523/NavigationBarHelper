@@ -1,35 +1,43 @@
 //
-//  UIViewController+PopHandler.swift
-//  JWKit
+// UIViewController+PopHandler.swift
 //
-//  Created by Jerry on 2017/11/2.
-//  Copyright © 2017年 com.jerry. All rights reserved.
+// Copyright (c) 2015 Jerry Wong
 //
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 import UIKit
 
-public protocol PopHandler {
+public protocol AnyPopInterrupter {
     
-    var shouldPop: Bool { get }
+    var isPopEnabled: Bool { get }
     
 }
 
 extension UINavigationController : UINavigationBarDelegate {
-    
-    @objc func jw_viewDidLoad() {
-        jw_viewDidLoad()
-        
-        objc_setAssociatedObject(self, &UINavigationController.originDelegateKey, interactivePopGestureRecognizer?.delegate, .OBJC_ASSOCIATION_ASSIGN)
-        interactivePopGestureRecognizer?.delegate = self
-    }
     
     public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
         if viewControllers.count < navigationBar.items?.count ?? 0 {
             return true
         }
         var shouldPop = true
-        if let vc = topViewController as? PopHandler {
-            shouldPop = vc.shouldPop
+        if let vc = topViewController as? AnyPopInterrupter {
+            shouldPop = vc.isPopEnabled
         }
         
         if shouldPop {
@@ -48,7 +56,6 @@ extension UINavigationController : UINavigationBarDelegate {
         return shouldPop
     }
     
-    private static var originDelegateKey: Void?
 }
 
 extension UINavigationController : UIGestureRecognizerDelegate {
@@ -59,8 +66,8 @@ extension UINavigationController : UIGestureRecognizerDelegate {
                 return false
             }
             
-            if let vc = topViewController as? PopHandler {
-                return vc.shouldPop
+            if let vc = topViewController as? AnyPopInterrupter {
+                return vc.isPopEnabled
             }
             
             let originDelegate = objc_getAssociatedObject(self, &UINavigationController.originDelegateKey) as? UIGestureRecognizerDelegate
@@ -70,9 +77,6 @@ extension UINavigationController : UIGestureRecognizerDelegate {
     }
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if gestureRecognizer == interactivePopGestureRecognizer {
-            return true
-        }
-        return false
+        return gestureRecognizer == interactivePopGestureRecognizer
     }
 }

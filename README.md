@@ -2,6 +2,8 @@
 # NavigationBarBackgroundHelper
 A library that helps to manage the navigation bar style. It helps to remember bar attributes between different VCs and keep the transition smooth.
 
+![alt tag](https://raw.githubusercontent.com/Jerry0523/NavigationBarBackgroundHelper/master/screenshot.gif)
+
 
 Usage
 -------
