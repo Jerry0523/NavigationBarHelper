@@ -42,6 +42,15 @@ extension UIViewController {
         
     }
     
+    var previousBarBackgroundHelper: NavigationBarBackgroundHelper? {
+        get {
+            guard let vcs = navigationController?.viewControllers, vcs.count >= 2 else {
+                return nil
+            }
+            return vcs[vcs.count - 2].getStoredBarBackgroundHelper()
+        }
+    }
+    
     func getStoredBarBackgroundHelper() -> NavigationBarBackgroundHelper? {
         return objc_getAssociatedObject(self, &BarHelperKey) as? NavigationBarBackgroundHelper
     }
@@ -60,7 +69,7 @@ extension UIViewController {
     @objc optional func navigationBarBackgroundAttrDidRestore()
     
     /// Called after the navigation bar's foreground attribute being restored, especially when the viewController's appearing.
-    /// Do additional change if you have modified the navigation bar.(e.g, you have set the bar tint color according to scrollview offset)
+    /// Do additional change if you have modified the navigation bar out of the performNavigationBarUpdates scope.(e.g, you have set the bar tint color according to scrollview offset)
     @objc optional func navigationBarForegroundAttrDidRestore()
     
 }
@@ -126,48 +135,47 @@ extension NavigationBarBackgroundHelper {
         
         guard
             let bar = viewController?.navigationController?.navigationBar,
-            let vcs = viewController?.navigationController?.viewControllers, vcs.count >= 2,
-            let helper = vcs[vcs.count - 2].getStoredBarBackgroundHelper() else {
+            let previousHelper = viewController?.previousBarBackgroundHelper else {
                 return
         }
         
-        helper.restoreBackgroundAttr(forNavigationBar: bar)
+        previousHelper.restoreBackgroundAttr(forNavigationBar: bar)
+        //we show the nc's bar by default. It is your job to call setNavigationBarHidden within the performNavigationBarUpdates scope.
+        viewController?.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     private func endUpdate() {
         guard let ctx = viewController else {
             return
         }
+        
         let containerView = ctx.view
         guard let bar = ctx.navigationController?.navigationBar else {
             return
         }
-        if view == nil {
-            view = NavigationBarBackgroundView(navigationBar: bar)
-            view?.autoresizingMask = [.flexibleWidth]
-        } else {
-            view?.update(withNavigationBar: bar)
-        }
-        containerView?.addSubview(view!)
         
-        if let scrollView = containerView as? UIScrollView {
-            keyPathObservations = [
-                scrollView.observe(\.contentOffset, options: .new, changeHandler: { [weak self] (scrollView, change) in
-                    self?.view?.transform = CGAffineTransform(translationX: 0, y: change.newValue?.y ?? 0)
-                })
-            ]
+        isNavigationBarHidden = viewController?.navigationController?.isNavigationBarHidden ?? false
+        
+        if !isNavigationBarHidden {
+            if view == nil {
+                view = NavigationBarBackgroundView(navigationBar: bar)
+                view?.autoresizingMask = [.flexibleWidth]
+            } else {
+                view?.update(withNavigationBar: bar)
+            }
+            containerView?.addSubview(view!)
+            
+            if let scrollView = containerView as? UIScrollView {
+                keyPathObservations = [
+                    scrollView.observe(\.contentOffset, options: .new, changeHandler: { [weak self] (scrollView, change) in
+                        self?.view?.transform = CGAffineTransform(translationX: 0, y: change.newValue?.y ?? 0)
+                    })
+                ]
+            }
         }
         
-        reset()
-    }
-    
-    private func reset() {
-        guard let bar = viewController?.navigationController?.navigationBar else {
-            return
-        }
         stashForegroundAttr(forNavigationBar: bar)
         stashBackgroundAttr(forNavigationBar: bar)
-        isNavigationBarHidden = viewController?.navigationController?.isNavigationBarHidden ?? false
         
         [.default, .compact, .defaultPrompt, .compactPrompt].forEach{ bar.setBackgroundImage(TransparentImage, for: $0) }
         bar.shadowImage = TransparentImage

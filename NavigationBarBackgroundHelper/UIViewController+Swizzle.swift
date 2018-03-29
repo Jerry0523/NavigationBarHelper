@@ -34,7 +34,7 @@ extension UIViewController {
     @objc func jw_viewWillAppear(_ animated: Bool) {
         if getStoredBarBackgroundHelper() != nil {
             if animated {
-                if transitionCoordinator?.isInteractive ?? false {//interactive pop back gesture
+               if transitionCoordinator?.isInteractive ?? false {//interactive pop back gesture
                     if transitionCoordinator?.isCancelled ?? false {//gesture cancelled, fromVc reappeared
                         synchronizeForegroundAttr()
                     } else {//gesture ongoing, toVc execute animation
