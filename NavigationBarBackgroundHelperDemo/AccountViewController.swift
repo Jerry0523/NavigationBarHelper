@@ -46,7 +46,6 @@ class AccountViewController: UIViewController {
         navigationController?.navigationBar.tintColor = val < 0.2 ? UIColor.darkGray : UIColor.white
         barBackgroundHelper.view?.alpha = val
     }
-    
 }
 
 extension AccountViewController : NavigationBarBackgroundHelperDelegate {
@@ -60,7 +59,6 @@ extension AccountViewController : NavigationBarBackgroundHelperDelegate {
     func takeOverNavigationBarForegroundAttrRestoration() -> Bool {
         return barAlpha != nil
     }
-    
 }
 
 extension AccountViewController : UICollectionViewDelegate {

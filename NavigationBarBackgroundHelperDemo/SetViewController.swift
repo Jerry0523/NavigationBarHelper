@@ -9,7 +9,7 @@
 import UIKit
 import NavigationBarBackgroundHelper
 
-class SetViewController: UIViewController {
+class SetViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

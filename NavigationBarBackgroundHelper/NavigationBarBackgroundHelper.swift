@@ -217,7 +217,6 @@ fileprivate let __init__: Bool = {
         try UIViewController.exchange(#selector(UIViewController.viewWillAppear(_:)), withSEL: #selector(UIViewController.jw_viewWillAppear(_:)))
     } catch {
         debugPrint(error)
-        print()
     }
     return true
 }()

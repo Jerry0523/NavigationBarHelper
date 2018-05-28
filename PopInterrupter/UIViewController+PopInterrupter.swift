@@ -45,17 +45,28 @@ extension UINavigationController : UINavigationBarDelegate {
                 self.popViewController(animated: true)
             }
         } else {
-            for subView in navigationBar.subviews {
-                if 0 < subView.alpha && subView.alpha < 1 {
-                    UIView.animate(withDuration: 0.25, animations: {
-                        subView.alpha = 1.0
-                    })
-                }
-            }
+            UIView.animate(withDuration: 0.25, animations: {
+                navigationBar.resetSubViewsAlpha()
+            })
         }
         return shouldPop
     }
     
+    public func navigationBar(_ navigationBar: UINavigationBar, didPop item: UINavigationItem) {
+        navigationBar.resetSubViewsAlpha()
+    }
+}
+
+fileprivate extension UIView {
+    
+    func resetSubViewsAlpha() {
+        subviews.forEach { (subView) in
+            if subView.alpha != 1.0 {
+                subView.alpha = 1.0
+            }
+            subView.resetSubViewsAlpha()
+        }
+    }
 }
 
 extension UINavigationController : UIGestureRecognizerDelegate {
