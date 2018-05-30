@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import NavigationBarBackgroundHelper
+import NavigationBarHelper
 
 class ListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        barBackgroundHelper.performNavigationBarUpdates {
+        navigationBarHelper.performNavigationBarUpdates {
             self.navigationController?.navigationBar.barStyle = .default
             self.navigationController?.navigationBar.tintColor = UIColor.red
         }

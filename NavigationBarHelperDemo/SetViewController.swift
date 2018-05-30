@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import NavigationBarBackgroundHelper
+import NavigationBarHelper
 
 class SetViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        barBackgroundHelper.performNavigationBarUpdates {
+        navigationBarHelper.performNavigationBarUpdates {
             self.navigationController?.navigationBar.barStyle = .default
             self.navigationController?.navigationBar.tintColor = UIColor.blue
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "bar_background"), for: .default)

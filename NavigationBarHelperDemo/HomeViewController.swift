@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import NavigationBarBackgroundHelper
+import NavigationBarHelper
 
 class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        barBackgroundHelper.performNavigationBarUpdates {
+        navigationBarHelper.performNavigationBarUpdates {
             self.navigationController?.navigationBar.barStyle = .black
             self.navigationController?.navigationBar.tintColor = UIColor.white
         }

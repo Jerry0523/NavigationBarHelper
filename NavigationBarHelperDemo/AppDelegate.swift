@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import NavigationBarBackgroundHelper
+import NavigationBarHelper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        NavigationBarBackgroundHelperDemo.load()
-        NavigationBarBackgroundHelper.load()
+        NavigationBarHelperDemo.load()
+        NavigationBarHelper.load()
         return true
     }
 

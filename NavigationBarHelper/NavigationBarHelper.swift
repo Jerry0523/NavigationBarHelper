@@ -1,5 +1,5 @@
 //
-// NavigationBarBackgroundHelper.swift
+// NavigationBarHelper.swift
 //
 // Copyright (c) 2015 Jerry Wong
 //
@@ -25,13 +25,13 @@ import UIKit
 
 extension UIViewController {
     
-    open var barBackgroundHelper: NavigationBarBackgroundHelper {
+    open var navigationBarHelper: NavigationBarHelper {
         
         get {
-            var handler = getStoredBarBackgroundHelper()
+            var handler = getStoredNavigationBarHelper()
             if handler == nil {
-                handler = NavigationBarBackgroundHelper(viewController: self)
-                self.barBackgroundHelper = handler!
+                handler = NavigationBarHelper(viewController: self)
+                self.navigationBarHelper = handler!
             }
             return handler!
         }
@@ -42,39 +42,43 @@ extension UIViewController {
         
     }
     
-    var previousBarBackgroundHelper: NavigationBarBackgroundHelper? {
+    var previousNavigationBarHelper: NavigationBarHelper? {
         get {
             guard let vcs = navigationController?.viewControllers, vcs.count >= 2 else {
                 return nil
             }
-            return vcs[vcs.count - 2].getStoredBarBackgroundHelper()
+            return vcs[vcs.count - 2].getStoredNavigationBarHelper()
         }
     }
     
-    func getStoredBarBackgroundHelper() -> NavigationBarBackgroundHelper? {
-        return objc_getAssociatedObject(self, &BarHelperKey) as? NavigationBarBackgroundHelper
+    func getStoredNavigationBarHelper() -> NavigationBarHelper? {
+        return objc_getAssociatedObject(self, &BarHelperKey) as? NavigationBarHelper
     }
     
 }
 
-@objc public protocol NavigationBarBackgroundHelperDelegate {
-    
-    /// Return true if you want to restore the bar foreground attribute manually. Otherwise, the library will do it automatically.
-    /// If you have changed the bar foreground attr manually (e.g., change the barTintColor by scrollView scrolling), you should override this function and return true to take over the bar foreground attr restoration.
-    @objc optional func takeOverNavigationBarForegroundAttrRestoration() -> Bool
+public protocol NavigationBarHelperDelegate {
     
     /// Called before the mirror view capturing the bar's background attribute.
+    /// Modify the backgroundAttr if it is not your appetite
+    func backgroundAttrWillRestore(attr: inout NavigationBarBackgroundAttr)
+    
+    /// Called after the mirror view capturing the bar's background attribute.
     /// It is the best time for you to do additional change to the bar's background attr.
     /// After this function is called, the mirror background view will synchronize with the bar's background.
-    @objc optional func navigationBarBackgroundAttrDidRestore()
+    func backgroundAttrDidRestore()
+    
+    /// Called before the navigation bar's foreground attribute being restored, especially when the viewController's appearing.
+    /// Modify the foregroundAttr if it is not your appetite
+    func foregroundAttrWillRestore(attr: inout NavigationBarForegroundAttr)
     
     /// Called after the navigation bar's foreground attribute being restored, especially when the viewController's appearing.
     /// Do additional change if you have modified the navigation bar out of the performNavigationBarUpdates scope.(e.g, you have set the bar tint color according to scrollview offset)
-    @objc optional func navigationBarForegroundAttrDidRestore()
+    func foregroundAttrDidRestore()
     
 }
 
-open class NavigationBarBackgroundHelper {
+open class NavigationBarHelper {
     
     open private(set) var view: NavigationBarBackgroundView?
     
@@ -121,7 +125,7 @@ open class NavigationBarBackgroundHelper {
     
 }
 
-extension NavigationBarBackgroundHelper {
+extension NavigationBarHelper {
     
     open class func load() {
         _ = __init__
@@ -129,13 +133,13 @@ extension NavigationBarBackgroundHelper {
     
 }
 
-extension NavigationBarBackgroundHelper {
+extension NavigationBarHelper {
     
     private func beginUpdate() {
         
         guard
             let bar = viewController?.navigationController?.navigationBar,
-            let previousHelper = viewController?.previousBarBackgroundHelper else {
+            let previousHelper = viewController?.previousNavigationBarHelper else {
                 return
         }
         

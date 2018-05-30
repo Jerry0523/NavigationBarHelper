@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import NavigationBarBackgroundHelper
+import NavigationBarHelper
 
 class AccountViewController: UIViewController {
     
@@ -30,7 +30,7 @@ class AccountViewController: UIViewController {
         super.viewDidLoad()
         let itemWidth = (view.frame.size.width - 20 * 4) / 3.0
         flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
-        barBackgroundHelper.performNavigationBarUpdates {
+        navigationBarHelper.performNavigationBarUpdates {
             self.navigationController?.navigationBar.barStyle = .black
             self.navigationController?.navigationBar.barTintColor = UIColor.orange
             self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -44,20 +44,27 @@ class AccountViewController: UIViewController {
     func updateBarAlpha(_ val: CGFloat) {
         navigationController?.navigationBar.barStyle = val < 0.5 ? .default : .black
         navigationController?.navigationBar.tintColor = val < 0.2 ? UIColor.darkGray : UIColor.white
-        barBackgroundHelper.view?.alpha = val
+        navigationBarHelper.view?.alpha = val
     }
 }
 
-extension AccountViewController : NavigationBarBackgroundHelperDelegate {
+extension AccountViewController : NavigationBarHelperDelegate {
     
-    func navigationBarForegroundAttrDidRestore() {
-        if let alpha = barAlpha {
-            updateBarAlpha(alpha)
+    func backgroundAttrWillRestore(attr: inout NavigationBarBackgroundAttr) {}
+    
+    func backgroundAttrDidRestore() {}
+    
+    func foregroundAttrWillRestore(attr: inout NavigationBarForegroundAttr) {
+        if let val = barAlpha {
+            attr.barStyle = val < 0.5 ? .default : .black
+            attr.tintColor = val < 0.2 ? UIColor.darkGray : UIColor.white
         }
     }
     
-    func takeOverNavigationBarForegroundAttrRestoration() -> Bool {
-        return barAlpha != nil
+    func foregroundAttrDidRestore() {
+        if let alpha = barAlpha {
+            updateBarAlpha(alpha)
+        }
     }
 }
 
@@ -76,8 +83,6 @@ extension AccountViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item % 2 == 1 {
             navigationController?.popViewController(animated: true)
-        } else {
-            performSegue(withIdentifier: "set", sender: nil)
         }
     }
     

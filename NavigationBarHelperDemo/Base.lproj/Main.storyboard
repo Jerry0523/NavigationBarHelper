@@ -30,7 +30,7 @@
         <!--Home-->
         <scene sceneID="6UW-nc-Xz1">
             <objects>
-                <viewController id="Ajh-7I-WVN" customClass="HomeViewController" customModule="NavigationBarBackgroundHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ajh-7I-WVN" customClass="HomeViewController" customModule="NavigationBarHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" id="AKG-rl-nw6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -83,7 +83,7 @@
         <!--List-->
         <scene sceneID="8w1-oR-9N4">
             <objects>
-                <tableViewController id="yRg-5Q-UMz" customClass="ListViewController" customModule="NavigationBarBackgroundHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="yRg-5Q-UMz" customClass="ListViewController" customModule="NavigationBarHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sTg-Mf-DMK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -149,7 +149,7 @@
         <!--Account View Controller-->
         <scene sceneID="wgL-Hv-7W6">
             <objects>
-                <viewController id="xIw-mP-1S6" customClass="AccountViewController" customModule="NavigationBarBackgroundHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xIw-mP-1S6" customClass="AccountViewController" customModule="NavigationBarHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nbt-v6-rfR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -278,9 +278,9 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="C05-qX-CfS">
-                        <barButtonItem key="rightBarButtonItem" title="Set" id="Ai4-78-f8C">
+                        <barButtonItem key="rightBarButtonItem" title="Timeline" id="Ai4-78-f8C">
                             <connections>
-                                <segue destination="KLi-gD-2kz" kind="show" id="iOX-5g-Jcg"/>
+                                <segue destination="Jra-Mo-PLX" kind="show" id="E8r-5H-CRN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -294,10 +294,62 @@
             </objects>
             <point key="canvasLocation" x="1333.5999999999999" y="142.57871064467767"/>
         </scene>
+        <!--Timeline View Controller-->
+        <scene sceneID="ric-VH-7SZ">
+            <objects>
+                <viewController id="Jra-Mo-PLX" customClass="TimelineViewController" customModule="NavigationBarHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OGe-L9-VFG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VcZ-Bq-tod">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline" translatesAutoresizingMaskIntoConstraints="NO" id="x8z-dH-Edb">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="4107"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="x8z-dH-Edb" secondAttribute="bottom" id="HDh-02-Xer"/>
+                                    <constraint firstItem="x8z-dH-Edb" firstAttribute="top" secondItem="VcZ-Bq-tod" secondAttribute="top" id="JKu-A5-r3U"/>
+                                    <constraint firstItem="x8z-dH-Edb" firstAttribute="leading" secondItem="VcZ-Bq-tod" secondAttribute="leading" id="lqw-Pp-Mqo"/>
+                                    <constraint firstItem="x8z-dH-Edb" firstAttribute="centerX" secondItem="VcZ-Bq-tod" secondAttribute="centerX" id="mOH-Jd-lna"/>
+                                    <constraint firstAttribute="trailing" secondItem="x8z-dH-Edb" secondAttribute="trailing" id="nqt-kc-UCJ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="Jra-Mo-PLX" id="ngB-Kw-chl"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.9137254901960784" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="VcZ-Bq-tod" firstAttribute="bottom" secondItem="OGe-L9-VFG" secondAttribute="bottom" id="VYF-UI-QLO"/>
+                            <constraint firstItem="VcZ-Bq-tod" firstAttribute="leading" secondItem="lZ5-Nc-rVN" secondAttribute="leading" id="YuN-e1-XSV"/>
+                            <constraint firstItem="VcZ-Bq-tod" firstAttribute="top" secondItem="OGe-L9-VFG" secondAttribute="top" id="eYC-jR-50h"/>
+                            <constraint firstItem="VcZ-Bq-tod" firstAttribute="trailing" secondItem="lZ5-Nc-rVN" secondAttribute="trailing" id="fqO-zh-d3D"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lZ5-Nc-rVN"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1v8-N6-vaS">
+                        <barButtonItem key="rightBarButtonItem" title="Set" id="efV-AX-p5j">
+                            <connections>
+                                <segue destination="KLi-gD-2kz" kind="show" id="iqz-nT-QJv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="barRightItem" destination="efV-AX-p5j" id="4sE-Uk-tyM"/>
+                        <outlet property="scrollView" destination="VcZ-Bq-tod" id="zcz-SX-oOX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dTG-hj-V2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2061.5999999999999" y="133.5832083958021"/>
+        </scene>
         <!--Set-->
         <scene sceneID="Sur-PX-GLC">
             <objects>
-                <tableViewController id="KLi-gD-2kz" customClass="SetViewController" customModule="NavigationBarBackgroundHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="KLi-gD-2kz" customClass="SetViewController" customModule="NavigationBarHelperDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="A7E-Os-lPX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -423,11 +475,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P0M-CJ-egu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2706" y="145"/>
+            <point key="canvasLocation" x="2801" y="134"/>
         </scene>
     </scenes>
     <resources>
         <image name="avatar" width="350" height="350"/>
         <image name="star_sky" width="638" height="401"/>
+        <image name="timeline" width="400" height="4107"/>
     </resources>
 </document>

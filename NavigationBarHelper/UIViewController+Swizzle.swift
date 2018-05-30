@@ -27,12 +27,12 @@ extension UIViewController {
     
     @available(iOS 11.0, *)
     @objc func jw_viewSafeAreaInsetsDidChange() {
-        getStoredBarBackgroundHelper()?.setNeedsLayout()
+        getStoredNavigationBarHelper()?.setNeedsLayout()
         jw_viewSafeAreaInsetsDidChange()
     }
     
     @objc func jw_viewWillAppear(_ animated: Bool) {
-        if getStoredBarBackgroundHelper() != nil {
+        if getStoredNavigationBarHelper() != nil {
             if animated {
                if transitionCoordinator?.isInteractive ?? false {//interactive pop back gesture
                     if transitionCoordinator?.isCancelled ?? false {//gesture cancelled, fromVc reappeared
@@ -57,7 +57,7 @@ extension UIViewController {
     }
     
     private func synchronizeForegroundAttr() {
-        barBackgroundHelper.synchronizeForegroundAttr()
+        navigationBarHelper.synchronizeForegroundAttr()
     }
     
 }
