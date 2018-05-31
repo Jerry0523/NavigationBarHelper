@@ -18,7 +18,7 @@ class TimelineViewController: UIViewController {
     
     @IBOutlet var barRightItem: UIBarButtonItem!
     
-    var lastOffsetY: CGFloat?
+    var lastOffsetY = CGFloat(0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,24 +47,18 @@ class TimelineViewController: UIViewController {
 
 extension TimelineViewController: UIScrollViewDelegate {
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        lastOffsetY = scrollView.contentOffset.y
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        lastOffsetY = nil
-    }
-
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let offsetY = lastOffsetY {
-            if scrollView.contentOffset.y < offsetY {
-                expandNavigationBar(true)
-            } else {
-                collapseNavigationBar()
-            }
-        } else {
-            expandNavigationBar(true)
+        let currentOffsetY = scrollView.contentOffset.y
+        if abs(currentOffsetY - lastOffsetY) < 20 {
+            return
         }
+        
+        if currentOffsetY <= -scrollView.contentInset.top - scrollView.adjustedContentInset.top || currentOffsetY < lastOffsetY {
+            expandNavigationBar(true)
+        } else {
+            collapseNavigationBar()
+        }
+        lastOffsetY = currentOffsetY
     }
 }
 
