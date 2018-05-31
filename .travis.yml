@@ -4,4 +4,4 @@ script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
-  - xcodebuild -project "NavigationBarBackgroundHelper.xcodeproj" -scheme "NavigationBarBackgroundHelper" -configuration Debug ONLY_ACTIVE_ARCH=NO build
+  - xcodebuild -project "NavigationBarHelper.xcodeproj" -scheme "NavigationBarHelper" -configuration Debug ONLY_ACTIVE_ARCH=NO build
