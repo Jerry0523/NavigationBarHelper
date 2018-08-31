@@ -25,6 +25,11 @@ import UIKit
 
 extension UIViewController {
     
+    @objc func jw_swizzling_UIViewController_viewWillLayoutSubViews() {
+        jw_swizzling_UIViewController_viewWillLayoutSubViews()
+        jw_viewWillLayoutSubViews()
+    }
+    
     @available(iOS 11.0, *)
     @objc func jw_swizzling_UIViewController_viewSafeAreaInsetsDidChange() {
         jw_viewSafeAreaInsetsDidChange()
@@ -34,6 +39,10 @@ extension UIViewController {
     @objc func jw_swizzling_UIViewController_viewWillAppear(_ animated: Bool) {
         jw_viewWillAppear(animated)
         jw_swizzling_UIViewController_viewWillAppear(animated)
+    }
+    
+    private func jw_viewWillLayoutSubViews() {
+        getStoredNavigationBarHelper()?.setNeedsLayout()
     }
     
     @available(iOS 11.0, *)

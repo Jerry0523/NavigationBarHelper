@@ -96,7 +96,13 @@ open class NavigationBarHelper {
         guard let vc = viewController else {
             return
         }
-        let insetsTop = max(vc.view.safeAreaInsets.top, vc.navigationController?.navigationBar.frame.size.height ?? 0)
+        
+        var insetsTop = CGFloat(0)
+        if #available(iOS 11.0, *) {
+            insetsTop = max(vc.view.safeAreaInsets.top, vc.navigationController?.navigationBar.frame.size.height ?? 0)
+        } else {
+            insetsTop = max(vc.topLayoutGuide.length, vc.navigationController?.navigationBar.frame.size.height ?? 0)
+        }
         view?.frame = CGRect(x: 0, y: 0 + (view?.transform.ty ?? 0), width: view?.frame.size.width ?? 0, height: insetsTop)
     }
     
@@ -193,7 +199,7 @@ fileprivate let __init__: Bool = {
         if #available(iOS 11.0, *) {
             try UIViewController.exchange(#selector(UIViewController.viewSafeAreaInsetsDidChange), withSEL: #selector(UIViewController.jw_swizzling_UIViewController_viewSafeAreaInsetsDidChange))
         } else {
-            throw NSError(domain: "com.jerry", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unsupported yet"])
+            try UIViewController.exchange(#selector(UIViewController.viewWillLayoutSubviews), withSEL: #selector(UIViewController.jw_swizzling_UIViewController_viewWillLayoutSubViews))
         }
         try UIViewController.exchange(#selector(UIViewController.viewWillAppear(_:)), withSEL: #selector(UIViewController.jw_swizzling_UIViewController_viewWillAppear(_:)))
         try UINavigationBar.exchange(#selector(UINavigationBar.hitTest(_:with:)), withSEL: #selector(UINavigationBar.jw_swizzling_UINavigationBar_hitTest(_:with:)))
