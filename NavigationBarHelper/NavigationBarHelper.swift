@@ -181,44 +181,22 @@ extension NavigationBarHelper {
         stashForegroundAttr(forNavigationBar: bar)
         stashBackgroundAttr(forNavigationBar: bar)
         
-        [.default, .compact, .defaultPrompt, .compactPrompt].forEach{ bar.setBackgroundImage(TransparentImage, for: $0) }
-        bar.shadowImage = TransparentImage
+        [.default, .compact, .defaultPrompt, .compactPrompt].forEach{ bar.setBackgroundImage(UIImage.transparent, for: $0) }
+        bar.shadowImage = UIImage.transparent
         bar.isTranslucent = true
     }
     
 }
 
-extension UIImage {
-    
-    convenience init?(color: UIColor, size: CGSize? = CGSize(width: 1.0, height: 1.0)) {
-        let rect = CGRect(origin: CGPoint.zero, size: size ?? CGSize(width: 1.0, height: 1.0))
-        
-        UIGraphicsBeginImageContext(rect.size)
-        defer {
-            UIGraphicsEndImageContext()
-        }
-        
-        let ctx = UIGraphicsGetCurrentContext()
-        ctx?.setFillColor(color.cgColor)
-        ctx?.fill(rect)
-        guard let cgImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage else {
-            return nil
-        }
-        self.init(cgImage: cgImage)
-    }
-    
-}
-
-fileprivate let TransparentImage = UIImage(color: UIColor.clear)
-
 fileprivate let __init__: Bool = {
     do {
         if #available(iOS 11.0, *) {
-            try UIViewController.exchange(#selector(UIViewController.viewSafeAreaInsetsDidChange), withSEL: #selector(UIViewController.jw_viewSafeAreaInsetsDidChange))
+            try UIViewController.exchange(#selector(UIViewController.viewSafeAreaInsetsDidChange), withSEL: #selector(UIViewController.jw_swizzling_UIViewController_viewSafeAreaInsetsDidChange))
         } else {
             throw NSError(domain: "com.jerry", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unsupported yet"])
         }
-        try UIViewController.exchange(#selector(UIViewController.viewWillAppear(_:)), withSEL: #selector(UIViewController.jw_viewWillAppear(_:)))
+        try UIViewController.exchange(#selector(UIViewController.viewWillAppear(_:)), withSEL: #selector(UIViewController.jw_swizzling_UIViewController_viewWillAppear(_:)))
+        try UINavigationBar.exchange(#selector(UINavigationBar.hitTest(_:with:)), withSEL: #selector(UINavigationBar.jw_swizzling_UINavigationBar_hitTest(_:with:)))
     } catch {
         debugPrint(error)
     }

@@ -120,25 +120,3 @@ open class NavigationBarBackgroundView: UIView {
     private let shadowImageView = UIImageView()
     
 }
-
-extension UIBarStyle {
-    
-    var shadowColor: UIColor {
-        switch self {
-        case .default:
-            return UIColor(white: 0, alpha: 0.3)
-        case .black, .blackTranslucent:
-            return UIColor(white: 1.0, alpha: 0.15)
-        }
-    }
-    
-    var defaultBlurEffectConfig: (UIBlurEffectStyle, UIColor) {
-        switch self {
-        case .default:
-            return (.light, UIColor(white: 0.97, alpha: 0.8))
-        case .black, .blackTranslucent:
-            return (.dark, UIColor(white: 0.11, alpha: 0.73))
-        }
-    }
-    
-}

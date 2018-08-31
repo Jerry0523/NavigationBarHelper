@@ -46,7 +46,7 @@ public extension NavigationBarHelper {
                 return
         }
         
-        let notifier = self as? NavigationBarHelperDelegate
+        let notifier = viewController as? NavigationBarHelperDelegate
         notifier?.backgroundAttrWillRestore(attr: &attr)
         
         if attr.backgroundImages.count > 0 {

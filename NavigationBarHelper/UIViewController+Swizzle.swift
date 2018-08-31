@@ -26,12 +26,22 @@ import UIKit
 extension UIViewController {
     
     @available(iOS 11.0, *)
-    @objc func jw_viewSafeAreaInsetsDidChange() {
-        getStoredNavigationBarHelper()?.setNeedsLayout()
+    @objc func jw_swizzling_UIViewController_viewSafeAreaInsetsDidChange() {
         jw_viewSafeAreaInsetsDidChange()
+        jw_swizzling_UIViewController_viewSafeAreaInsetsDidChange()
     }
     
-    @objc func jw_viewWillAppear(_ animated: Bool) {
+    @objc func jw_swizzling_UIViewController_viewWillAppear(_ animated: Bool) {
+        jw_viewWillAppear(animated)
+        jw_swizzling_UIViewController_viewWillAppear(animated)
+    }
+    
+    @available(iOS 11.0, *)
+    private func jw_viewSafeAreaInsetsDidChange() {
+        getStoredNavigationBarHelper()?.setNeedsLayout()
+    }
+    
+    private func jw_viewWillAppear(_ animated: Bool) {
         if getStoredNavigationBarHelper() != nil {
             if animated {
                if transitionCoordinator?.isInteractive ?? false {//interactive pop back gesture
@@ -53,29 +63,10 @@ extension UIViewController {
                 synchronizeForegroundAttr()
             }
         }
-        jw_viewWillAppear(animated)
     }
     
     private func synchronizeForegroundAttr() {
         navigationBarHelper.synchronizeForegroundAttr()
     }
     
-}
-
-extension NSObject {
-    
-    class func exchange(_ oldSEL: Selector, withSEL newSEL: Selector) throws {
-        
-        guard let originMethod = class_getInstanceMethod(self, oldSEL),
-            let altMethod = class_getInstanceMethod(self, newSEL) else {
-                throw NSError(domain: "com.jerry", code: 0, userInfo: [NSLocalizedDescriptionKey: "cannot find methods for SEL \(oldSEL) or \(newSEL)"])
-        }
-        
-        let didAddMethod = class_addMethod(self, oldSEL, method_getImplementation(altMethod), method_getTypeEncoding(altMethod))
-        if didAddMethod {
-            class_replaceMethod(self, newSEL, method_getImplementation(originMethod), method_getTypeEncoding(originMethod))
-        } else {
-            method_exchangeImplementations(originMethod, altMethod)
-        }
-    }
 }

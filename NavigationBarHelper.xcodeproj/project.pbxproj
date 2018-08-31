@@ -15,6 +15,8 @@
 		C42C1D722046CB44004B33D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C42C1D702046CB44004B33D2 /* Main.storyboard */; };
 		C42C1D742046CB44004B33D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C42C1D732046CB44004B33D2 /* Assets.xcassets */; };
 		C42C1D772046CB44004B33D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C42C1D752046CB44004B33D2 /* LaunchScreen.storyboard */; };
+		C454316E21391700002BF607 /* UINavigationBar+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C454316D21391700002BF607 /* UINavigationBar+Swizzle.swift */; };
+		C4543170213917EF002BF607 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C454316F213917EF002BF607 /* Utilities.swift */; };
 		C455E72B2057E83400A3211D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C455E7292057E83400A3211D /* README.md */; };
 		C455E72C2057E83400A3211D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C455E72A2057E83400A3211D /* LICENSE */; };
 		C455E7362057EE2E00A3211D /* NavigationBarBackgroundHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = C455E7342057EE2E00A3211D /* NavigationBarBackgroundHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,6 +66,8 @@
 		C42C1D732046CB44004B33D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C42C1D762046CB44004B33D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C42C1D782046CB44004B33D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C454316D21391700002BF607 /* UINavigationBar+Swizzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Swizzle.swift"; sourceTree = "<group>"; };
+		C454316F213917EF002BF607 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C455E7292057E83400A3211D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C455E72A2057E83400A3211D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C455E7322057EE2E00A3211D /* NavigationBarHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NavigationBarHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +155,8 @@
 				C455E7412057EE9800A3211D /* NavigationBarBackgroundView.swift */,
 				C455E7452058CE1200A3211D /* NavigationBarHelper+AttrRestoration.swift */,
 				C455E7472058CEAB00A3211D /* UIViewController+Swizzle.swift */,
+				C454316D21391700002BF607 /* UINavigationBar+Swizzle.swift */,
+				C454316F213917EF002BF607 /* Utilities.swift */,
 				C455E7342057EE2E00A3211D /* NavigationBarBackgroundHelper.h */,
 				C455E7352057EE2E00A3211D /* Info.plist */,
 			);
@@ -290,6 +296,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4543170213917EF002BF607 /* Utilities.swift in Sources */,
+				C454316E21391700002BF607 /* UINavigationBar+Swizzle.swift in Sources */,
 				C455E7462058CE1200A3211D /* NavigationBarHelper+AttrRestoration.swift in Sources */,
 				C455E7482058CEAB00A3211D /* UIViewController+Swizzle.swift in Sources */,
 				C455E7432057EE9800A3211D /* NavigationBarHelper.swift in Sources */,
