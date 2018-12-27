@@ -109,7 +109,7 @@ open class NavigationBarBackgroundView: UIView {
             isShadowTop = true
         }
         
-        bringSubview(toFront: isShadowTop ? shadowImageView : contentView)
+        bringSubviewToFront(isShadowTop ? shadowImageView : contentView)
         shadowImageView.image = mShadowImage
     }
     

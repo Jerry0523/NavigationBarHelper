@@ -25,7 +25,7 @@ import UIKit
 
 public typealias NavigationBarBackgroundAttr = (backgroundImages: [UIBarMetrics: UIImage], shadowImage: UIImage?, barTintColor: UIColor?, isTranslucent: Bool)
 
-public typealias NavigationBarForegroundAttr = (tintColor: UIColor?, barStyle: UIBarStyle, titleAttributes: [NSAttributedStringKey: Any]?)
+public typealias NavigationBarForegroundAttr = (tintColor: UIColor?, barStyle: UIBarStyle, titleAttributes: [NSAttributedString.Key: Any]?)
 
 public extension NavigationBarHelper {
     

@@ -75,7 +75,7 @@ extension UIBarStyle {
         }
     }
     
-    var defaultBlurEffectConfig: (UIBlurEffectStyle, UIColor) {
+    var defaultBlurEffectConfig: (UIBlurEffect.Style, UIColor) {
         switch self {
         case .default:
             return (.light, UIColor(white: 0.97, alpha: 0.8))

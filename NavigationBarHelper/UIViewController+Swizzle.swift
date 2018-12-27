@@ -64,7 +64,7 @@ extension UIViewController {
                         })
                     }
                 } else {//non-interactive pop back (click the back item)
-                    UIView.animate(withDuration: TimeInterval(UINavigationControllerHideShowBarDuration), animations: {
+                    UIView.animate(withDuration: TimeInterval(UINavigationController.hideShowBarDuration), animations: {
                         self.synchronizeForegroundAttr()
                     })
                 }
