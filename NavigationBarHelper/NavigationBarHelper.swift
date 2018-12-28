@@ -80,17 +80,30 @@ public protocol NavigationBarHelperDelegate {
 
 public final class NavigationBarHelper {
     
+    /// A type indicates the transition style for the navigation bar
+    public enum TranstionStyle {
+        
+        ///iOS' default style. perform a fade like transition
+        case system
+        
+        ///android default style. The navigation bar is attached to the viewController.
+        case followPage
+        
+    }
+    
+    public static var transitionStyle = TranstionStyle.system
+    
     public private(set) var view: NavigationBarBackgroundView?
     
     init(viewController: UIViewController) {
         self.viewController = viewController
     }
     
-    //This function is to be called in viewDidLoad.
-    //Apis to change the navigation bar should be called within this scope.
-    //After called,any attribute (background image/tintColor/barTintColor/barStyle etc) will be remembered by the library.
-    //It will create a mirror background view of the navigation bar (auto managed) and clear the bar background (to provide a smooth transition).
-    //Any change to the navigation bar's background (background image/barTintColor/barStyle/shadowImage) within the scope will be syncronized with the mirror view.
+    ///This function is to be called in viewDidLoad.
+    ///Apis to change the navigation bar should be called within this scope.
+    ///After called,any attribute (background image/tintColor/barTintColor/barStyle etc) will be remembered by the library.
+    ///It will create a mirror background view of the navigation bar (auto managed) and clear the bar background (to provide a smooth transition).
+    ///Any change to the navigation bar's background (background image/barTintColor/barStyle/shadowImage) within the scope will be syncronized with the mirror view.
     public func performNavigationBarUpdates(_ action: (() -> ())?) {
         beginUpdate()
         action?()
@@ -111,7 +124,7 @@ public final class NavigationBarHelper {
         view?.frame = CGRect(x: 0, y: 0 + (view?.transform.ty ?? 0), width: view?.frame.size.width ?? 0, height: insetsTop)
     }
     
-    public func synchronizeForegroundAttr() {
+    func synchronizeForegroundAttr() {
         guard let nc = viewController?.navigationController else {
             return
         }
@@ -120,15 +133,77 @@ public final class NavigationBarHelper {
         view?.isHidden = isNavigationBarHidden
     }
     
+    func snapshotNavigationRegion() {
+        guard
+            let nc = viewController?.navigationController,
+            let view = view,
+            nc.isViewLoaded && !view.isHidden else {
+            return
+        }
+        if let snapshotView = nc.view.resizableSnapshotView(from: CGRect(origin: CGPoint.zero, size: view.frame.size), afterScreenUpdates: false, withCapInsets: UIEdgeInsets.zero) {
+            snapshotView.tag = NavigationRegionSnapshotViewTag
+            snapshotView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            view.addSubview(snapshotView)
+        }
+    }
+    
+    func removeNavigationRegionSnapshot() {
+        guard let view = view, !view.isHidden else {
+                return
+        }
+        let snapshotView = view.viewWithTag(NavigationRegionSnapshotViewTag)
+        snapshotView?.removeFromSuperview()
+    }
+    
+    func clearForegroundAttr(isRestoreEnabled: Bool) {
+        if isRestoreEnabled {
+            let title = viewController?.navigationItem.title
+            let titleView = viewController?.navigationItem.titleView
+            let prompt = viewController?.navigationItem.prompt
+            let leftBarButtonItems = viewController?.navigationItem.leftBarButtonItems
+            let rightBarButtonItem = viewController?.navigationItem.rightBarButtonItem
+            let isHidesBackButton = viewController?.navigationItem.hidesBackButton ?? false
+            
+            restoreClearedForegroundOperation = { [weak viewController] in
+                viewController?.navigationItem.title = title
+                viewController?.navigationItem.titleView = titleView
+                viewController?.navigationItem.prompt = prompt
+                viewController?.navigationItem.leftBarButtonItems = leftBarButtonItems
+                viewController?.navigationItem.rightBarButtonItem = rightBarButtonItem
+                viewController?.navigationItem.setHidesBackButton(isHidesBackButton, animated: false)
+            }
+        }
+        viewController?.navigationController?.navigationBar.tintColor = UIColor.clear
+        viewController?.navigationItem.title = nil
+        viewController?.navigationItem.titleView = nil
+        viewController?.navigationItem.prompt = nil
+        viewController?.navigationItem.leftBarButtonItems = nil
+        viewController?.navigationItem.rightBarButtonItem = nil
+        viewController?.navigationItem.setHidesBackButton(true, animated: false)
+    }
+    
+    func restoreClearedForegroundAttr() {
+        restoreClearedForegroundOperation?()
+        restoreClearedForegroundOperation = nil
+    }
+    
     var backgroundAttr: BackgroundAttr?
     
     var foregroundAttr: ForegroundAttr?
     
     var isNavigationBarHidden = false
     
+    var isNavigationRegionSnapshotted: Bool {
+        get {
+            return view?.viewWithTag(NavigationRegionSnapshotViewTag) != nil
+        }
+    }
+    
     weak var viewController: UIViewController?
     
     var keyPathObservations: [NSKeyValueObservation]?
+    
+    var restoreClearedForegroundOperation: (() -> ())?
     
 }
 
@@ -192,7 +267,7 @@ extension NavigationBarHelper {
             } else {
                 //unsupported yet
             }
-            clearForegroundAttr()
+            clearForegroundAttr(isRestoreEnabled: false)
         }
         
         stashForegroundAttr(for: bar)
@@ -200,15 +275,6 @@ extension NavigationBarHelper {
     [.default, .compact, .defaultPrompt, .compactPrompt].forEach{ bar.setBackgroundImage(UIImage.transparent, for: $0) }
         bar.shadowImage = UIImage.transparent
         bar.isTranslucent = true
-    }
-    
-    func clearForegroundAttr() {
-        viewController?.navigationItem.title = nil
-        viewController?.navigationItem.titleView = nil
-        viewController?.navigationItem.prompt = nil
-        viewController?.navigationItem.leftBarButtonItems = nil
-        viewController?.navigationItem.rightBarButtonItem = nil
-        viewController?.navigationItem.setHidesBackButton(true, animated: false)
     }
     
 }
@@ -221,6 +287,8 @@ fileprivate let __init__: Bool = {
             try UIViewController.exchange(#selector(UIViewController.viewWillLayoutSubviews), withSEL: #selector(UIViewController.jw_swizzling_UIViewController_viewWillLayoutSubViews))
         }
         try UIViewController.exchange(#selector(UIViewController.viewWillAppear(_:)), withSEL: #selector(UIViewController.jw_swizzling_UIViewController_viewWillAppear(_:)))
+        try UIViewController.exchange(#selector(UIViewController.viewDidAppear(_:)), withSEL: #selector(UIViewController.jw_swizzling_UIViewController_viewDidAppear(_:)))
+        try UIViewController.exchange(#selector(UIViewController.viewWillDisappear(_:)), withSEL: #selector(UIViewController.jw_swizzling_UIViewController_viewWillDisappear(_:)))
         try UINavigationBar.exchange(#selector(UINavigationBar.hitTest(_:with:)), withSEL: #selector(UINavigationBar.jw_swizzling_UINavigationBar_hitTest(_:with:)))
     } catch {
         debugPrint(error)
@@ -229,3 +297,5 @@ fileprivate let __init__: Bool = {
 }()
 
 private var BarHelperKey: Void?
+
+private let NavigationRegionSnapshotViewTag = 1011

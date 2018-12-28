@@ -41,6 +41,16 @@ extension UIViewController {
         jw_swizzling_UIViewController_viewWillAppear(animated)
     }
     
+    @objc func jw_swizzling_UIViewController_viewDidAppear(_ animated: Bool) {
+        jw_viewDidAppear(animated)
+        jw_swizzling_UIViewController_viewDidAppear(animated)
+    }
+    
+    @objc func jw_swizzling_UIViewController_viewWillDisappear(_ animated: Bool) {
+        jw_viewWillDisappear(animated)
+        jw_swizzling_UIViewController_viewWillDisappear(animated)
+    }
+    
     private func jw_viewWillLayoutSubViews() {
         getStoredNavigationBarHelper()?.setNeedsLayout()
     }
@@ -51,9 +61,17 @@ extension UIViewController {
     }
     
     private func jw_viewWillAppear(_ animated: Bool) {
-        if getStoredNavigationBarHelper() != nil {
+        guard getStoredNavigationBarHelper() != nil else {
+            return
+        }
+        if case .followPage = NavigationBarHelper.transitionStyle {
+            if !navigationBarHelper.isNavigationRegionSnapshotted {
+                synchronizeForegroundAttr()
+            }
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        } else {
             if animated {
-               if transitionCoordinator?.isInteractive ?? false {//interactive pop back gesture
+                if transitionCoordinator?.isInteractive ?? false {//interactive pop back gesture
                     if transitionCoordinator?.isCancelled ?? false {//gesture cancelled, fromVc reappeared
                         synchronizeForegroundAttr()
                     } else {//gesture ongoing, toVc execute animation
@@ -72,6 +90,30 @@ extension UIViewController {
                 synchronizeForegroundAttr()
             }
         }
+    }
+    
+    private func jw_viewDidAppear(_ animated: Bool) {
+        guard getStoredNavigationBarHelper() != nil else {
+            return
+        }
+        if case .followPage = NavigationBarHelper.transitionStyle {
+            navigationBarHelper.removeNavigationRegionSnapshot()
+            navigationBarHelper.restoreClearedForegroundAttr()
+            synchronizeForegroundAttr()
+        }
+    }
+    
+    private func jw_viewWillDisappear(_ animated: Bool) {
+        guard getStoredNavigationBarHelper() != nil else {
+            return
+        }
+        
+        if case .followPage = NavigationBarHelper.transitionStyle {
+            navigationBarHelper.snapshotNavigationRegion()
+            navigationBarHelper.clearForegroundAttr(isRestoreEnabled: true)
+            navigationController?.setNavigationBarHidden(true, animated: false)
+        }
+        
     }
     
     private func synchronizeForegroundAttr() {
