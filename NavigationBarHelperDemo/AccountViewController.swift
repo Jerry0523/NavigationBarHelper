@@ -50,18 +50,18 @@ class AccountViewController: UIViewController {
 
 extension AccountViewController : NavigationBarHelperDelegate {
     
-    func backgroundAttrWillRestore(attr: inout NavigationBarBackgroundAttr) {}
+    func willRestore(backgroundAttr: inout NavigationBarHelper.BackgroundAttr) {}
     
-    func backgroundAttrDidRestore() {}
+    func didRestore(backgroundAttr: NavigationBarHelper.BackgroundAttr) {}
     
-    func foregroundAttrWillRestore(attr: inout NavigationBarForegroundAttr) {
+    func willRestore(foregroundAttr: inout NavigationBarHelper.ForegroundAttr) {
         if let val = barAlpha {
-            attr.barStyle = val < 0.5 ? .default : .black
-            attr.tintColor = val < 0.2 ? UIColor.darkGray : UIColor.white
+            foregroundAttr.barStyle = val < 0.5 ? .default : .black
+            foregroundAttr.tintColor = val < 0.2 ? UIColor.darkGray : UIColor.white
         }
     }
     
-    func foregroundAttrDidRestore() {
+    func didRestore(foregroundAttr: NavigationBarHelper.ForegroundAttr) {
         if let alpha = barAlpha {
             updateBarAlpha(alpha)
         }
@@ -81,7 +81,9 @@ extension AccountViewController : UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.item % 2 == 1 {
+        if indexPath.item % 2 == 0 {
+            self.performSegue(withIdentifier: "pushTimeline", sender: nil)
+        } else if indexPath.item % 2 == 1 {
             navigationController?.popViewController(animated: true)
         }
     }

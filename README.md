@@ -15,7 +15,11 @@ NavigationBarHelper.load()
 ```
 > swizzle UIViewController.viewSafeAreaInsetsDidChange
 
+> swizzle UIViewController.viewWillLayoutSubviews
+
 > swizzle UIViewController.viewWillAppear(_:)
+
+> UINavigationBar.hitTest(_:with:)
 
 ### For a viewController, use the function below to modify the navigation bar.
 
@@ -33,16 +37,16 @@ override func viewDidLoad() {
 
 ### Protocol NavigationBarHelperDelegate
 
-- backgroundAttrWillRestore(attr: inout NavigationBarBackgroundAttr)
+- willRestore(backgroundAttr: inout NavigationBarHelper.BackgroundAttr)
 >Called before the mirror view capturing the bar's background attribute. Modify the backgroundAttr if it is not your appetite.
 
-- backgroundAttrDidRestore()
+- didRestore(backgroundAttr: NavigationBarHelper.BackgroundAttr)
 > Called after the mirror view capturing the bar's background attribute. It is the best time for you to do additional change to the bar's background attr. After this function is called, the mirror background view will synchronize with the bar's background.
 
-- foregroundAttrWillRestore(attr: inout NavigationBarForegroundAttr)
+- willRestore(foregroundAttr: inout NavigationBarHelper.ForegroundAttr)
 > Called before the navigation bar's foreground attribute being restored, especially when the viewController's appearing. Modify the foregroundAttr if it is not your appetite.
 
-- foregroundAttrDidRestore()
+- didRestore(foregroundAttr: NavigationBarHelper.ForegroundAttr)
 > Called after the navigation bar's foreground attribute being restored, especially when the viewController's appearing. Do additional change if you have modified the navigation bar out of the performNavigationBarUpdates scope.(e.g, you have set the bar tint color according to scrollview offset).
 
 License

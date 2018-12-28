@@ -23,13 +23,13 @@
 
 import UIKit
 
-public typealias NavigationBarBackgroundAttr = (backgroundImages: [UIBarMetrics: UIImage], shadowImage: UIImage?, barTintColor: UIColor?, isTranslucent: Bool)
-
-public typealias NavigationBarForegroundAttr = (tintColor: UIColor?, barStyle: UIBarStyle, titleAttributes: [NSAttributedString.Key: Any]?)
-
 public extension NavigationBarHelper {
     
-    public func stashBackgroundAttr(forNavigationBar bar: UINavigationBar) {
+    public typealias BackgroundAttr = (backgroundImages: [UIBarMetrics: UIImage], shadowImage: UIImage?, barTintColor: UIColor?, isTranslucent: Bool)
+    
+    public typealias ForegroundAttr = (tintColor: UIColor?, barStyle: UIBarStyle, titleAttributes: [NSAttributedString.Key: Any]?)
+    
+    public func stashBackgroundAttr(for bar: UINavigationBar) {
         var backgroundImages = [UIBarMetrics: UIImage]()
         [UIBarMetrics.default, UIBarMetrics.compact, UIBarMetrics.defaultPrompt, UIBarMetrics.compactPrompt].forEach {
             guard let img = bar.backgroundImage(for: $0) else {
@@ -41,13 +41,13 @@ public extension NavigationBarHelper {
         backgroundAttr = (backgroundImages, bar.shadowImage, bar.barTintColor, bar.isTranslucent)
     }
     
-    public func restoreBackgroundAttr(forNavigationBar bar: UINavigationBar) {
+    public func restoreBackgroundAttr(for bar: UINavigationBar) {
         guard var attr = backgroundAttr else {
                 return
         }
         
         let notifier = viewController as? NavigationBarHelperDelegate
-        notifier?.backgroundAttrWillRestore(attr: &attr)
+        notifier?.willRestore(backgroundAttr: &attr)
         
         if attr.backgroundImages.count > 0 {
             attr.backgroundImages.forEach { bar.setBackgroundImage($0.1, for: $0.0) }
@@ -59,29 +59,30 @@ public extension NavigationBarHelper {
         bar.isTranslucent = attr.isTranslucent
         bar.barTintColor = attr.barTintColor
         
-        notifier?.backgroundAttrDidRestore()
+        notifier?.didRestore(backgroundAttr: attr)
     }
     
-    public func stashForegroundAttr(forNavigationBar bar: UINavigationBar) {
+    public func stashForegroundAttr(for bar: UINavigationBar) {
         foregroundAttr = (bar.tintColor, bar.barStyle, bar.titleTextAttributes)
     }
     
-    public func restoreForegroundAttr(forNavigationBar bar: UINavigationBar) {
+    public func restoreForegroundAttr(for bar: UINavigationBar) {
         guard var attr = foregroundAttr else {
             return
         }
         
         let notifier = viewController as? NavigationBarHelperDelegate
-        notifier?.foregroundAttrWillRestore(attr: &attr)
+        notifier?.willRestore(foregroundAttr: &attr)
         
         bar.tintColor = attr.tintColor
         bar.titleTextAttributes = attr.titleAttributes
         bar.barStyle = attr.barStyle
 
-        notifier?.foregroundAttrDidRestore()
+        notifier?.didRestore(foregroundAttr: attr)
         
         ///It turns out that when the transition is ongoing, the barStyle does not change the title label correctly.
         ///So we have to change the title color manually when the titleAttributes are not set.
+        
         guard attr.titleAttributes == nil, let barForegroundContentClass = NSClassFromString("_UINavigationBarContentView") else {
             return
         }

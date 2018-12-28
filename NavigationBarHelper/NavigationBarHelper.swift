@@ -61,38 +61,43 @@ public protocol NavigationBarHelperDelegate {
     
     /// Called before the mirror view capturing the bar's background attribute.
     /// Modify the backgroundAttr if it is not your appetite
-    func backgroundAttrWillRestore(attr: inout NavigationBarBackgroundAttr)
+    func willRestore(backgroundAttr: inout NavigationBarHelper.BackgroundAttr)
     
     /// Called after the mirror view capturing the bar's background attribute.
     /// It is the best time for you to do additional change to the bar's background attr.
     /// After this function is called, the mirror background view will synchronize with the bar's background.
-    func backgroundAttrDidRestore()
+    func didRestore(backgroundAttr: NavigationBarHelper.BackgroundAttr)
     
     /// Called before the navigation bar's foreground attribute being restored, especially when the viewController's appearing.
     /// Modify the foregroundAttr if it is not your appetite
-    func foregroundAttrWillRestore(attr: inout NavigationBarForegroundAttr)
+    func willRestore(foregroundAttr: inout NavigationBarHelper.ForegroundAttr)
     
     /// Called after the navigation bar's foreground attribute being restored, especially when the viewController's appearing.
     /// Do additional change if you have modified the navigation bar out of the performNavigationBarUpdates scope.(e.g, you have set the bar tint color according to scrollview offset)
-    func foregroundAttrDidRestore()
+    func didRestore(foregroundAttr: NavigationBarHelper.ForegroundAttr)
     
 }
 
-open class NavigationBarHelper {
+public final class NavigationBarHelper {
     
-    open private(set) var view: NavigationBarBackgroundView?
+    public private(set) var view: NavigationBarBackgroundView?
     
     init(viewController: UIViewController) {
         self.viewController = viewController
     }
     
-    open func performNavigationBarUpdates(_ action: (() -> ())?) {
+    //This function is to be called in viewDidLoad.
+    //Apis to change the navigation bar should be called within this scope.
+    //After called,any attribute (background image/tintColor/barTintColor/barStyle etc) will be remembered by the library.
+    //It will create a mirror background view of the navigation bar (auto managed) and clear the bar background (to provide a smooth transition).
+    //Any change to the navigation bar's background (background image/barTintColor/barStyle/shadowImage) within the scope will be syncronized with the mirror view.
+    public func performNavigationBarUpdates(_ action: (() -> ())?) {
         beginUpdate()
         action?()
         endUpdate()
     }
     
-    open func setNeedsLayout() {
+    public func setNeedsLayout() {
         guard let vc = viewController else {
             return
         }
@@ -106,22 +111,18 @@ open class NavigationBarHelper {
         view?.frame = CGRect(x: 0, y: 0 + (view?.transform.ty ?? 0), width: view?.frame.size.width ?? 0, height: insetsTop)
     }
     
-    open func synchronizeForegroundAttr() {
+    public func synchronizeForegroundAttr() {
         guard let nc = viewController?.navigationController else {
             return
         }
         let bar = nc.navigationBar
-        restoreForegroundAttr(forNavigationBar: bar)
-        
+        restoreForegroundAttr(for: bar)
         view?.isHidden = isNavigationBarHidden
-        if nc.isNavigationBarHidden != isNavigationBarHidden {
-            nc.setNavigationBarHidden(isNavigationBarHidden, animated: true)
-        }
     }
     
-    var backgroundAttr: NavigationBarBackgroundAttr?
+    var backgroundAttr: BackgroundAttr?
     
-    var foregroundAttr: NavigationBarForegroundAttr?
+    var foregroundAttr: ForegroundAttr?
     
     var isNavigationBarHidden = false
     
@@ -133,7 +134,7 @@ open class NavigationBarHelper {
 
 extension NavigationBarHelper {
     
-    open class func load() {
+    public class func load() {
         _ = __init__
     }
     
@@ -149,9 +150,7 @@ extension NavigationBarHelper {
                 return
         }
         
-        previousHelper.restoreBackgroundAttr(forNavigationBar: bar)
-        //we show the nc's bar by default. It is your job to call setNavigationBarHidden within the performNavigationBarUpdates scope.
-        viewController?.navigationController?.setNavigationBarHidden(false, animated: false)
+        previousHelper.restoreBackgroundAttr(for: bar)
     }
     
     private func endUpdate() {
@@ -182,14 +181,34 @@ extension NavigationBarHelper {
                     })
                 ]
             }
+        } else {
+            //Here, we set the navigation bar visible, to provide a smooth transition.
+            //To confirm to the user's set, we play a trick to fade that the navigation bar is hidden.
+            //To do so, we clear all the foreground attr and set the bgView hidden.
+            //On iOS 11, we provide an negative insets top to cancel out the navigation bar's position
+            viewController?.navigationController?.setNavigationBarHidden(false, animated: false)
+            if #available(iOS 11.0, *) {
+                viewController?.additionalSafeAreaInsets = UIEdgeInsets(top: -(viewController?.navigationController?.navigationBar.bounds.height ?? 0), left: 0, bottom: 0, right: 0)
+            } else {
+                //unsupported yet
+            }
+            clearForegroundAttr()
         }
         
-        stashForegroundAttr(forNavigationBar: bar)
-        stashBackgroundAttr(forNavigationBar: bar)
-        
-        [.default, .compact, .defaultPrompt, .compactPrompt].forEach{ bar.setBackgroundImage(UIImage.transparent, for: $0) }
+        stashForegroundAttr(for: bar)
+        stashBackgroundAttr(for: bar)
+    [.default, .compact, .defaultPrompt, .compactPrompt].forEach{ bar.setBackgroundImage(UIImage.transparent, for: $0) }
         bar.shadowImage = UIImage.transparent
         bar.isTranslucent = true
+    }
+    
+    func clearForegroundAttr() {
+        viewController?.navigationItem.title = nil
+        viewController?.navigationItem.titleView = nil
+        viewController?.navigationItem.prompt = nil
+        viewController?.navigationItem.leftBarButtonItems = nil
+        viewController?.navigationItem.rightBarButtonItem = nil
+        viewController?.navigationItem.setHidesBackButton(true, animated: false)
     }
     
 }
