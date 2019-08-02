@@ -22,10 +22,10 @@ class TimelineViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBarHelper.performNavigationBarUpdates {
-            self.navigationController?.navigationBar.barStyle = .default
-            self.navigationController?.navigationBar.barTintColor = UIColor(red: 248.0 / 255.0, green: 229.0 / 255.0, blue: 213.0 / 255.0, alpha: 1.0)
-            self.navigationController?.navigationBar.tintColor = UIColor.purple
+        navigationBarHelper.perform {
+            $0.barStyle = .default
+            $0.barTintColor = UIColor(red: 248.0 / 255.0, green: 229.0 / 255.0, blue: 213.0 / 255.0, alpha: 1.0)
+            $0.tintColor = UIColor.purple
         }
         let barHeight = navigationBarHelper.view?.frame.height ?? 0
         titleLabel.frame = CGRect(x: 0, y: 20.0 + (barHeight - 20.0 - 20.0) * 0.5, width: view.frame.width, height: 20)

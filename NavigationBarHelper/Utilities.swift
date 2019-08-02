@@ -72,6 +72,8 @@ extension UIBarStyle {
             return UIColor(white: 0, alpha: 0.3)
         case .black, .blackTranslucent:
             return UIColor(white: 1.0, alpha: 0.15)
+        @unknown default:
+            return UIColor(white: 0, alpha: 0.3)
         }
     }
     
@@ -81,6 +83,8 @@ extension UIBarStyle {
             return (.light, UIColor(white: 0.97, alpha: 0.8))
         case .black, .blackTranslucent:
             return (.dark, UIColor(white: 0.11, alpha: 0.73))
+        @unknown default:
+            return (.light, UIColor(white: 0.97, alpha: 0.8))
         }
     }
     

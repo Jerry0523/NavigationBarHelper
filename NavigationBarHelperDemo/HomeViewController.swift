@@ -13,9 +13,9 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBarHelper.performNavigationBarUpdates {
-            self.navigationController?.navigationBar.barStyle = .black
-            self.navigationController?.navigationBar.tintColor = UIColor.white
+        navigationBarHelper.perform {
+            $0.barStyle = .black
+            $0.tintColor = UIColor.white
         }
     }
     

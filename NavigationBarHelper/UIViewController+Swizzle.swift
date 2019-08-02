@@ -84,6 +84,9 @@ extension UIViewController {
                 } else {//non-interactive pop back (click the back item)
                     UIView.animate(withDuration: TimeInterval(UINavigationController.hideShowBarDuration), animations: {
                         self.synchronizeForegroundAttr()
+                        if let bar = self.navigationController?.navigationBar {
+                            self.navigationBarHelper.fixNavigationTitleView(for: bar)
+                        }
                     })
                 }
             } else {//perform with no animation
@@ -107,13 +110,12 @@ extension UIViewController {
         guard getStoredNavigationBarHelper() != nil else {
             return
         }
-        
         if case .followPage = NavigationBarHelper.transitionStyle {
             navigationBarHelper.snapshotNavigationRegion()
             navigationBarHelper.clearForegroundAttr(isRestoreEnabled: true)
             navigationController?.setNavigationBarHidden(true, animated: false)
         }
-        
+
     }
     
     private func synchronizeForegroundAttr() {

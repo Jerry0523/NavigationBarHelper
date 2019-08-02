@@ -13,9 +13,9 @@ class ListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBarHelper.performNavigationBarUpdates {
-            self.navigationController?.navigationBar.barStyle = .default
-            self.navigationController?.navigationBar.tintColor = UIColor.red
+        navigationBarHelper.perform {
+            $0.barStyle = .default
+            $0.tintColor = UIColor.red
         }
     }
 

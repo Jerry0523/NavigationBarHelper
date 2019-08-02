@@ -47,7 +47,7 @@ extension UINavigationController {
 fileprivate extension NSObject {
     
     @discardableResult
-    fileprivate class func exchange(_ oldSEL: Selector, withSEL newSEL: Selector) -> Bool {
+    class func exchange(_ oldSEL: Selector, withSEL newSEL: Selector) -> Bool {
         
         guard let originMethod = class_getInstanceMethod(self, oldSEL),
               let altMethod = class_getInstanceMethod(self, newSEL) else {

@@ -13,10 +13,10 @@ class SetViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBarHelper.performNavigationBarUpdates {
-            self.navigationController?.navigationBar.barStyle = .default
-            self.navigationController?.navigationBar.tintColor = UIColor.blue
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "bar_background"), for: .default)
+        navigationBarHelper.perform {
+            $0.barStyle = .default
+            $0.tintColor = UIColor.blue
+            $0.setBackgroundImage(UIImage(named: "bar_background"), for: .default)
         }
     }
 

@@ -13,7 +13,7 @@ class HideNavigationBarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBarHelper.performNavigationBarUpdates {
+        navigationBarHelper.perform { _ in
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
     }

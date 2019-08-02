@@ -104,10 +104,13 @@ public final class NavigationBarHelper {
     ///After called,any attribute (background image/tintColor/barTintColor/barStyle etc) will be remembered by the library.
     ///It will create a mirror background view of the navigation bar (auto managed) and clear the bar background (to provide a smooth transition).
     ///Any change to the navigation bar's background (background image/barTintColor/barStyle/shadowImage) within the scope will be syncronized with the mirror view.
-    public func performNavigationBarUpdates(_ action: (() -> ())?) {
-        beginUpdate()
-        action?()
-        endUpdate()
+    public func perform(_ action: ((UINavigationBar) -> ())?) {
+        guard let bar = viewController?.navigationController?.navigationBar else {
+            return
+        }
+        beginUpdate(with: bar)
+        action?(bar)
+        endUpdate(with: bar)
     }
     
     public func setNeedsLayout() {
@@ -217,24 +220,16 @@ extension NavigationBarHelper {
 
 extension NavigationBarHelper {
     
-    private func beginUpdate() {
+    private func beginUpdate(with bar: UINavigationBar) {
         
-        guard
-            let bar = viewController?.navigationController?.navigationBar,
-            let previousHelper = viewController?.previousNavigationBarHelper else {
+        guard let previousHelper = viewController?.previousNavigationBarHelper else {
                 return
         }
-        
         previousHelper.restoreBackgroundAttr(for: bar)
     }
     
-    private func endUpdate() {
-        guard let ctx = viewController else {
-            return
-        }
-        
-        let containerView = ctx.view
-        guard let bar = ctx.navigationController?.navigationBar else {
+    private func endUpdate(with bar: UINavigationBar) {
+        guard viewController?.isViewLoaded ?? false, let containerView = viewController?.view else {
             return
         }
         
@@ -247,8 +242,7 @@ extension NavigationBarHelper {
             } else {
                 view?.update(withNavigationBar: bar)
             }
-            containerView?.addSubview(view!)
-            
+            containerView.addSubview(view!)
             if let scrollView = containerView as? UIScrollView {
                 keyPathObservations = [
                     scrollView.observe(\.contentOffset, options: .new, changeHandler: { [weak self] (scrollView, change) in

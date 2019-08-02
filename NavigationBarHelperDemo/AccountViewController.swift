@@ -30,10 +30,10 @@ class AccountViewController: UIViewController {
         super.viewDidLoad()
         let itemWidth = (view.frame.size.width - 20 * 4) / 3.0
         flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
-        navigationBarHelper.performNavigationBarUpdates {
-            self.navigationController?.navigationBar.barStyle = .black
-            self.navigationController?.navigationBar.barTintColor = UIColor.orange
-            self.navigationController?.navigationBar.tintColor = UIColor.white
+        navigationBarHelper.perform {
+            $0.barStyle = .black
+            $0.barTintColor = UIColor.orange
+            $0.tintColor = UIColor.white
         }
     }
 

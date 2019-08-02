@@ -26,9 +26,9 @@ NavigationBarHelper.load()
 ```swift
 override func viewDidLoad() {
     super.viewDidLoad()
-    barBackgroundHelper.performNavigationBarUpdates {
+    barBackgroundHelper.perform {
         //Codes for navigation bar update.
-        //e.g. self.navigationController?.navigationBar.tintColor = UIColor.white
+        //e.g. $0.tintColor = UIColor.white
     }
 }
 ```
