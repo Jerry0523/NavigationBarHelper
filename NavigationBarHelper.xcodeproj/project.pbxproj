@@ -61,6 +61,7 @@
 		C424D7F32060E7C6006B9697 /* UIViewController+PopInterrupter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PopInterrupter.swift"; sourceTree = "<group>"; };
 		C424D7F42060E7C6006B9697 /* UINavigationController+Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Swizzle.swift"; sourceTree = "<group>"; };
 		C425CC6F21D5EFB50062F919 /* HideNavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideNavigationBarViewController.swift; sourceTree = "<group>"; };
+		C4275D8822F40ECA00F6DF3C /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		C42C1D692046CB44004B33D2 /* NavigationBarHelperDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationBarHelperDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42C1D6C2046CB44004B33D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C42C1D6E2046CB44004B33D2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -115,11 +116,12 @@
 		C42C1D602046CB44004B33D2 = {
 			isa = PBXGroup;
 			children = (
+				C4275D8822F40ECA00F6DF3C /* Package.swift */,
+				C455E72A2057E83400A3211D /* LICENSE */,
+				C455E7292057E83400A3211D /* README.md */,
 				C424D7F22060E7C6006B9697 /* PopInterrupter */,
 				C455E7332057EE2E00A3211D /* NavigationBarHelper */,
 				C42C1D6B2046CB44004B33D2 /* NavigationBarHelperDemo */,
-				C455E72A2057E83400A3211D /* LICENSE */,
-				C455E7292057E83400A3211D /* README.md */,
 				C42C1D6A2046CB44004B33D2 /* Products */,
 			);
 			sourceTree = "<group>";
